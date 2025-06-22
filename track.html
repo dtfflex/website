@@ -1,182 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DTFFLEX - Order Tracker</title>
-  <link rel="icon" href="img/favicon.png" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #fdfdff;
-      color: #01003c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-    h1 {
-      font-weight: 800;
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      color: #01003c;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-    form {
-      background: white;
-      max-width: 400px;
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      padding: 25px 30px;
-      box-sizing: border-box;
-      margin-bottom: 2.5rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #01003c;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 14px 18px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      border: 1.5px solid #ccc;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.3s ease;
-      box-sizing: border-box;
-    }
-    input[type="text"]:focus {
-      border-color: #01003c;
-      box-shadow: 0 0 10px #ff005c44;
-    }
-    button {
-      width: 100%;
-      padding: 14px;
-      background-color: #01003c;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #e00050;
-    }
-    .result-card {
-      background: white;
-      max-width: 700px;
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-      padding: 30px 40px;
-      box-sizing: border-box;
-      color: #01003c;
-      line-height: 1.6;
-      font-size: 1rem;
-      font-weight: 500;
-    }
-    .result-card h2 {
-      font-weight: 800;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #01003c;
-      letter-spacing: 0.6px;
-    }
-    .field {
-      margin-bottom: 14px;
-    }
-    .field strong {
-      display: inline-block;
-      width: 160px;
-      color: #ff005c;
-      font-weight: 700;
-    }
-    .no-result {
-      color: #ff005c;
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-align: center;
-      margin-top: 30px;
-    }
-    @media (max-width: 480px) {
-      form, .result-card {
-        padding: 20px;
-        border-radius: 12px;
-      }
-      .field strong {
-        width: 130px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DTFFLEX - Order Tracker</title>
+  <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fdfdff;
+      color: #01003c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-weight: 800;
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      color: #01003c;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    form {
+      background: white;
+      max-width: 400px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      padding: 25px 30px;
+      box-sizing: border-box;
+      margin-bottom: 2.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #01003c;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1.5px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus {
+      border-color: #01003c;
+      box-shadow: 0 0 10px #ff005c44;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #01003c;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e00050;
+    }
+    .result-card {
+      background: white;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      padding: 30px 40px;
+      box-sizing: border-box;
+      color: #01003c;
+      line-height: 1.6;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .result-card h2 {
+      font-weight: 800;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #01003c;
+      letter-spacing: 0.6px;
+    }
+    .field {
+      margin-bottom: 14px;
+    }
+    .field strong {
+      display: inline-block;
+      width: 160px;
+      color: #ff005c;
+      font-weight: 700;
+    }
+    .no-result {
+      color: #ff005c;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 30px;
+    }
+    @media (max-width: 480px) {
+      form, .result-card {
+        padding: 20px;
+        border-radius: 12px;
+      }
+      .field strong {
+        width: 130px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1 data-aos="fade-down">DTFFLEX Order Tracker</h1>
+  <h1 data-aos="fade-down">DTFFLEX Order Tracker</h1>
 
-  <form id="trackForm" data-aos="fade-up" data-aos-delay="100">
-    <label for="code">Enter your Order Code</label>
-    <input type="text" id="code" placeholder="Order Code" autocomplete="off" required />
-    <button type="submit">Track Order</button>
-  </form>
+  <form id="trackForm" data-aos="fade-up" data-aos-delay="100">
+    <label for="code">Enter your Order Code</label>
+    <input type="text" id="code" placeholder="Order Code" autocomplete="off" required />
+    <button type="submit">Track Order</button>
+  </form>
 
-  <div id="result" data-aos="fade-up" data-aos-delay="200"></div>
+  <div id="result" data-aos="fade-up" data-aos-delay="200"></div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
 
-    const trackForm = document.getElementById('trackForm');
-    const resultDiv = document.getElementById('result');
+    const trackForm = document.getElementById('trackForm');
+    const resultDiv = document.getElementById('result');
 
-    trackForm.addEventListener('submit', async e => {
-      e.preventDefault();
-      const codeInput = document.getElementById('code').value.trim().toLowerCase();
-      if (!codeInput) return;
+    trackForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const codeInput = document.getElementById('code').value.trim().toLowerCase();
+      if (!codeInput) return;
 
-      resultDiv.innerHTML = `<p class="no-result">Searching...</p>`;
-
-      try {
-        const res = await fetch('https://api.sheetbest.com/sheets/03ab63a0-f30a-4b18-8d5a-56659ce037e4');
-        const data = await res.json();
-
-        const order = data.find(row => row.Code.toLowerCase() === codeInput);
-        if (!order) {
-          resultDiv.innerHTML = `<p class="no-result">No order found with code: <strong>${codeInput}</strong></p>`;
-          return;
-        }
-
-        resultDiv.innerHTML = `
-          <div class="result-card" data-aos="fade-up">
-            <h2>Order Details</h2>
-            <div class="field"><strong>Order Code:</strong> ${order.Code}</div>
-            <div class="field"><strong>Merchant Name:</strong> ${order["Merchant Name"]}</div>
-            <div class="field"><strong>Merchant Phone:</strong> ${order["Merchant Phone"]}</div>
-            <div class="field"><strong>Customer Name:</strong> ${order["Customer Name"]}</div>
-            <div class="field"><strong>Customer Phone:</strong> ${order["Customer Phone"]}</div>
-            <div class="field"><strong>Your Profit:</strong> ৳${order.Profit}</div>
-            <div class="field"><strong>What You Ordered:</strong> ${order["What You Ordered?"]}</div>
-            <div class="field"><strong>Color:</strong> ${order.Color}</div>
-            <div class="field"><strong>Size:</strong> ${order.Size}</div>
-            <div class="field"><strong>Status:</strong> ${order.Status}</div>
-            <div class="field"><strong>Delivery Note:</strong> ${order["Delivery Note"]}</div>
-            <div class="field"><strong>Order Date:</strong> ${order["Order Date"] || 'Not specified'}</div>
-          </div>
-        `;
-      } catch (error) {
-        console.error(error);
-        resultDiv.innerHTML = `<p class="no-result">Error fetching data. Please try again later.</p>`;
-      }
-    });
-  </script>
+      fetch('https://api.sheetbest.com/sheets/03ab63a0-f30a-4b18-8d5a-56659ce037e4')
+        .then(res => res.json())
+        .then(data => {
+          const order = data.find(o => o['Order Code'].toLowerCase() === codeInput);
+          if (!order) {
+            resultDiv.innerHTML = `<p class="no-result">No order found with code: <strong>${codeInput}</strong></p>`;
+            return;
+          }
+          resultDiv.innerHTML = `
+            <div class="result-card" data-aos="fade-up">
+              <h2>Order Details</h2>
+              <div class="field"><strong>Order Code:</strong> ${order['Order Code']}</div>
+              <div class="field"><strong>Merchant Name:</strong> ${order['Merchant Name']}</div>
+              <div class="field"><strong>Merchant Phone:</strong> ${order['Merchant Phone']}</div>
+              <div class="field"><strong>Customer Name:</strong> ${order['Customer Name']}</div>
+              <div class="field"><strong>Customer Phone:</strong> ${order['Customer Phone']}</div>
+              <div class="field"><strong>Your Profit:</strong> ৳${order.Profit}</div>
+              <div class="field"><strong>What You Ordered:</strong> ${order['What You Ordered?']}</div>
+              <div class="field"><strong>Color:</strong> ${order.Color}</div>
+              <div class="field"><strong>Size:</strong> ${order.Size}</div>
+              <div class="field"><strong>Status:</strong> ${order.Status}</div>
+              <div class="field"><strong>Delivery Note:</strong> ${order['Delivery Note']}</div>
+              <div class="field"><strong>Order Date:</strong> ${order['Order Date']}</div>
+            </div>
+          `;
+        })
+        .catch(() => {
+          resultDiv.innerHTML = `<p class="no-result">Error fetching data. Please try again later.</p>`;
+        });
+    });
+  </script>
 </body>
-</html>
+  </html>
+    
