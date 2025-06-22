@@ -146,7 +146,7 @@
       resultDiv.innerHTML = `<p class="no-result">Searching...</p>`;
 
       try {
-        const res = await fetch('https://opensheet.elk.sh/12liokyoBKheLRzRg929BgN3Koi5QbVtcaAN2k6-KzlI/Sheet1');
+        const res = await fetch('https://api.sheetbest.com/sheets/03ab63a0-f30a-4b18-8d5a-56659ce037e4');
         const data = await res.json();
 
         const order = data.find(row => row.Code.toLowerCase() === codeInput);
