@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Form • DTFFLEX</title>
+  <link rel="icon" href="img/favicon.png" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      color: #01003c;
+    }
+    .odf-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .odf-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .odf-field {
+      margin-bottom: 20px;
+    }
+    .odf-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .odf-field input,
+    .odf-field select,
+    .odf-field textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    .odf-field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .odf-submit {
+      display: inline-block;
+      background-color: #01003c;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .odf-submit:hover {
+      background-color: #1a1a5e;
+    }
+    @media (max-width: 600px) {
+      .odf-title {
+        font-size: 1.6rem;
+      }
+    }
+    #dropship {
+      border: 2px solid #000;
+      border-radius: 14px 14px 4px 4px;
+      padding: 16px;
+      font-size: 0.95rem;
+      transform: translateX(-40px);
+      animation: slideInNote 0.8s ease-out forwards;
+      animation-delay: 1s;
+      margin-bottom: 20px;
+      margin-left:25px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="odf-container">
+  <h1 class="odf-title">Place Your Order</h1>
+  <div id="dropship">
+    📌 <strong>Dropshipping Note*:</strong> Amader Kase Dropshipping Korte Chaile, Niche Deowa
+    <a href="https://t.me/DTFflex" target="_blank">Telegram</a> or reply to your confirmation email.
+  </div>
+
+  <form method="POST" action="https://formsubmit.co/dtfflex@gmail.com" enctype="multipart/form-data">
+    <!-- Merchant Info -->
+    <div class="odf-field">
+      <label for="your-name">Your Name*</label>
+      <input type="text" id="your-name" name="yourName" required />
+    </div>
+
+    <div class="odf-field">
+      <label for="your-email">Your Email Address*</label>
+      <input type="email" id="your-email" name="yourEmail" required />
+    </div>
+
+    <div class="odf-field">
+      <label for="your-phone">Your Phone Number*</label>
+      <input type="tel" id="your-phone" name="yourPhone" required />
+    </div>
+
+    <!-- Customer Info -->
+    <div class="odf-field">
+      <label for="customer-name">Customer Name*</label>
+      <input type="text" id="customer-name" name="customerName" required />
+    </div>
+
+    <div class="odf-field">
+      <label for="customer-phone">Customer Phone Number*</label>
+      <input type="tel" id="customer-phone" name="customerPhone" required />
+    </div>
+
+    <div class="odf-field">
+      <label for="address">Customer Address*</label>
+      <textarea id="address" name="customerAddress" placeholder="Enter valid address" required></textarea>
+    </div>
+
+    <!-- Product Info -->
+    <div class="odf-field">
+      <label for="product">What Do You Want?</label>
+      <input type="text" id="product" name="product" placeholder="Dropshoulder, Tote Bag..." required />
+      <a href="price.html">see what we have</a>
+    </div>
+
+    <div class="odf-field">
+      <label for="color">What Colour You Want?</label>
+      <input type="text" id="color" name="color" placeholder="Black, White, Maroon..." required />
+    </div>
+
+    <div class="odf-field">
+      <label for="size">Select Size</label>
+      <select id="size" name="size" required>
+        <option value="">Select one</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="2XL">2XL</option>
+        <option value="3XL">3XL</option>
+      </select>
+    </div>
+
+    <div class="odf-field">
+      <label for="print">What Print Do You Want?</label>
+      <input type="text" id="print" name="printType" placeholder="A3, A4, A5..." required />
+      <a href="price.html">see what we have</a>
+    </div>
+
+    <div class="odf-field">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" name="quantity" min="1" required />
+    </div>
+
+    <!-- File Uploads -->
+    <div class="odf-field">
+      <label for="file1">Upload Mockup File</label>
+      <input type="file" id="file1" name="mockupFile" accept="image/*,.pdf,.ai,.psd,.zip" />
+    </div>
+
+    <div class="odf-field">
+      <label for="file2">Upload Design File</label>
+      <input type="file" id="file2" name="designFile" accept="image/*,.pdf,.ai,.psd,.zip" />
+    </div>
+<div class="odf-field">
+      <label for="print">Enter Your Resell Price </label>
+      <p>This Will Be (-) From Cost Price And, The Extra Amount Is Your Profit!</p>
+      <input type="text" id="print" name="printType" placeholder="500tk, 600tk" required />
+    </div>
+    <!-- Note -->
+    <div class="odf-field">
+      <label for="note">Additional Instructions</label>
+      <textarea id="note" name="additionalInstructions" placeholder="Design ta front/back a bosbe..."></textarea>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="odf-submit">Submit Order</button>
+  </form>
+</div>
+
+</body>
+</html>
