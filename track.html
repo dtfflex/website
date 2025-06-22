@@ -134,40 +134,48 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
-    
+
     const trackForm = document.getElementById('trackForm');
     const resultDiv = document.getElementById('result');
 
-    trackForm.addEventListener('submit', e => {
+    trackForm.addEventListener('submit', async e => {
       e.preventDefault();
       const codeInput = document.getElementById('code').value.trim().toLowerCase();
       if (!codeInput) return;
 
-      const orders = JSON.parse(localStorage.getItem('dtf_orders') || '[]');
-      const order = orders.find(o => o.code.toLowerCase() === codeInput);
+      resultDiv.innerHTML = `<p class="no-result">Searching...</p>`;
 
-      if (!order) {
-        resultDiv.innerHTML = `<p class="no-result">No order found with code: <strong>${codeInput}</strong></p>`;
-        return;
+      try {
+        const res = await fetch('https://opensheet.elk.sh/12liokyoBKheLRzRg929BgN3Koi5QbVtcaAN2k6-KzlI/Sheet1');
+        const data = await res.json();
+
+        const order = data.find(row => row.Code.toLowerCase() === codeInput);
+        if (!order) {
+          resultDiv.innerHTML = `<p class="no-result">No order found with code: <strong>${codeInput}</strong></p>`;
+          return;
+        }
+
+        resultDiv.innerHTML = `
+          <div class="result-card" data-aos="fade-up">
+            <h2>Order Details</h2>
+            <div class="field"><strong>Order Code:</strong> ${order.Code}</div>
+            <div class="field"><strong>Merchant Name:</strong> ${order["Merchant Name"]}</div>
+            <div class="field"><strong>Merchant Phone:</strong> ${order["Merchant Phone"]}</div>
+            <div class="field"><strong>Customer Name:</strong> ${order["Customer Name"]}</div>
+            <div class="field"><strong>Customer Phone:</strong> ${order["Customer Phone"]}</div>
+            <div class="field"><strong>Your Profit:</strong> ৳${order.Profit}</div>
+            <div class="field"><strong>What You Ordered:</strong> ${order["What You Ordered?"]}</div>
+            <div class="field"><strong>Color:</strong> ${order.Color}</div>
+            <div class="field"><strong>Size:</strong> ${order.Size}</div>
+            <div class="field"><strong>Status:</strong> ${order.Status}</div>
+            <div class="field"><strong>Delivery Note:</strong> ${order["Delivery Note"]}</div>
+            <div class="field"><strong>Order Date:</strong> ${order["Order Date"] || 'Not specified'}</div>
+          </div>
+        `;
+      } catch (error) {
+        console.error(error);
+        resultDiv.innerHTML = `<p class="no-result">Error fetching data. Please try again later.</p>`;
       }
-
-      resultDiv.innerHTML = `
-        <div class="result-card" data-aos="fade-up">
-          <h2>Order Details</h2>
-          <div class="field"><strong>Order Code:</strong> ${order.code}</div>
-          <div class="field"><strong>Merchant Name:</strong> ${order.merchant}</div>
-          <div class="field"><strong>Merchant Phone:</strong> ${order.merchantPhone}</div>
-          <div class="field"><strong>Customer Name:</strong> ${order.customer}</div>
-          <div class="field"><strong>Customer Phone:</strong> ${order.customerPhone}</div>
-          <div class="field"><strong>Your Profit:</strong> ৳${order.profit}</div>
-          <div class="field"><strong>What You Ordered:</strong> ${order.items}</div>
-          <div class="field"><strong>Color:</strong> ${order.color}</div>
-          <div class="field"><strong>Size:</strong> ${order.size}</div>
-          <div class="field"><strong>Status:</strong> ${order.status}</div>
-          <div class="field"><strong>Delivery Note:</strong> ${order.note}</div>
-          <div class="field"><strong>Order Date:</strong> ${order.delivery}</div>
-        </div>
-      `;
     });
   </script>
 </body>
