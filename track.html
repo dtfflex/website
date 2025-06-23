@@ -2,112 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DTFFLEX - Order Tracker</title>
-  <link rel="icon" href="img/favicon.png" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <title>DTFFLEX Order Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      background: #fdfdff;
-      color: #01003c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-    h1 {
-      font-weight: 800;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-    form {
-      background: white;
-      padding: 25px 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      max-width: 400px;
-      width: 100%;
-      margin-bottom: 2rem;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 1rem;
-      border-radius: 12px;
-      border: 1.5px solid #ccc;
-      margin-bottom: 20px;
+    * {
       box-sizing: border-box;
     }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #ffddf0, #ddefff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .tracker-box {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #ff007f;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-top: 15px;
+      border-radius: 12px;
+      border: 2px solid #ccc;
+      outline: none;
+    }
+
     button {
-      width: 100%;
-      padding: 14px;
-      background-color: #01003c;
+      margin-top: 25px;
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #4b0082;
       color: white;
-      font-weight: bold;
-      font-size: 1rem;
       border: none;
-      border-radius: 14px;
+      border-radius: 15px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #e00050;
-    }
-    .result-card {
-      background: white;
-      padding: 30px 40px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      max-width: 700px;
       width: 100%;
-      font-size: 1rem;
-      color: #01003c;
+      transition: 0.2s ease-in-out;
     }
-    .field {
-      margin-bottom: 14px;
+
+    button:hover {
+      background-color: #5e17eb;
+      transform: scale(1.05);
     }
-    .field strong {
-      width: 160px;
-      display: inline-block;
-      color: #ff005c;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .no-result {
-      color: #ff005c;
-      font-weight: bold;
-      margin-top: 20px;
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      input, button {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>DTFFLEX Order Tracker</h1>
-  <form id="trackForm">
-    <label for="code">Enter Your Order Code</label>
-    <input type="text" id="code" placeholder="Order Code" required />
-    <button type="submit">Track Order</button>
-  </form>
 
-  <div id="result"></div>
+  <div class="tracker-box">
+    <h1>🎯 Track Your DTFFLEX Order</h1>
 
-  <script src="orders.js"></script>
+    <input type="text" id="orderId" placeholder="Enter Your Unique Order ID" />
+    <br />
+
+    <button onclick="trackOrder()">🔍 Track Order</button>
+  </div>
+
   <script>
-    const form = document.getElementById("trackForm");
-    const resultDiv = document.getElementById("result");
+    function trackOrder() {
+      const orderId = document.getElementById("orderId").value.trim();
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const code = document.getElementById("code").value.trim().toLowerCase();
-      const order = orders.find(o => o.code.toLowerCase() === code);
-
-      if (!order) {
-        resultDiv.innerHTML = `<p class="no-result">No order found with code: <strong>${code}</strong></p>`;
+      if (!orderId) {
+        alert("Please enter a valid Order ID.");
         return;
       }
 
-      resultDiv.innerHTML = `
-        <div class="result-card">
-          <div class="field"><strong>Order Code:</strong> ${order.code}</div>
-          <div class="field"><strong>Merchant:</strong> ${order.merchant}</div>
-          <div class="field"><strong>Merchant Phone:</strong> ${order.merchantPhone}</div>
-          <div class="field"><strong>Cus
+      // ✅ Fixed Notepad Provider
+      const baseURL = "https://notepad.io/";
+      const fullURL = baseURL + encodeURIComponent(orderId);
+
+      // 🔁 Redirect to order's notepad page
+      window.location.href = fullURL;
+    }
+  </script>
+
+</body>
+</html>
