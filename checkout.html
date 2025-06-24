@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,18 +7,12 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f4f4;
+      font-family: 'Poppins', sans-serif;
+      background: #fdfdff url('https://www.transparenttextures.com/patterns/fabric-of-squares.png');
+      background-repeat: repeat;
       color: #01003c;
+      scroll-behavior: smooth;
     }
-      body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #fdfdff url('https://www.transparenttextures.com/patterns/fabric-of-squares.png');
-  background-repeat: repeat;
-  color: #01003c;
-  scroll-behavior: smooth;
-      }
     .odf-container {
       max-width: 800px;
       margin: 40px auto;
@@ -70,11 +63,6 @@
     .odf-submit:hover {
       background-color: #1a1a5e;
     }
-    @media (max-width: 600px) {
-      .odf-title {
-        font-size: 1.6rem;
-      }
-    }
     #dropship {
       border: 2px solid #000;
       border-radius: 14px 14px 4px 4px;
@@ -84,68 +72,54 @@
       animation: slideInNote 0.8s ease-out forwards;
       animation-delay: 1s;
       margin-bottom: 20px;
-      margin-left:25px;
+      margin-left: 25px;
       width: 100%;
     }
   </style>
 </head>
 <body>
-
 <div class="odf-container">
-  <h1 class="odf-title">Place Your Order</h1>
-  <div id="dropship">
+  <h1 class="odf-title">Place Your Order</h1>  <div id="dropship">
     📌 <strong>Dropshipping Note*:</strong>  আমাদের কাছ থেকে যদি আপনি ড্রপশিপিং না করতে পারেন তাহলে নিচে দোয়া
     <a href="#" target="_blank">Watch Video</a> তে ক্লিক করে কিভাবে অর্ডার করবেন তা দেখে নিন!
   </div>
-
-  <form method="POST" action="https://formsubmit.co/65143e891ae1b664cb1fb598e7821f12" enctype="multipart/form-data">
-    <!-- Merchant Info -->
+    <form id="telegramOrderForm">
     <div class="odf-field">
       <label for="your-name">Your Name*</label>
-      <input type="text" id="your-name" name="yourName" required />
+      <input type="text" id="your-name" required / placeholder="Enter Your Name">
     </div>
-
     <div class="odf-field">
       <label for="your-email">Your Email Address*</label>
-      <input type="email" id="your-email" name="yourEmail" required />
+      <input type="email" id="your-email" required placeholder="Enter You Email Address"/>
     </div>
-
     <div class="odf-field">
       <label for="your-phone">Your Phone Number*</label>
-      <input type="tel" id="your-phone" name="yourPhone" required />
+      <input type="tel" id="your-phone" required placeholder="Enter Your Phone Number (We Call You)" />
     </div>
-
-    <!-- Customer Info -->
     <div class="odf-field">
       <label for="customer-name">Customer Name*</label>
-      <input type="text" id="customer-name" name="customerName" required />
+      <input type="text" id="customer-name" required placeholder="Enter Your Customer Name"/>
     </div>
-
     <div class="odf-field">
       <label for="customer-phone">Customer Phone Number*</label>
-      <input type="tel" id="customer-phone" name="customerPhone" required />
+      <input type="tel" id="customer-phone" required placeholder="Enter Your Customer Phone Number"/>
     </div>
-
     <div class="odf-field">
       <label for="address">Customer Address*</label>
-      <textarea id="address" name="customerAddress" placeholder="Enter valid address" required></textarea>
+      <textarea id="address" required placeholder="Enter Customer Address (Where We Deliver The Product)"></textarea>
     </div>
-
-    <!-- Product Info -->
     <div class="odf-field">
       <label for="product">What Do You Want?</label>
-      <input type="text" id="product" name="product" placeholder="Dropshoulder, Tote Bag..." required />
+      <input type="text" id="product" required placeholder="Dropshoulder, Regular Fit, Acid W. D., Tote Bag.." />
       <a href="price.html">see what we have</a>
     </div>
-
     <div class="odf-field">
       <label for="color">What Colour You Want?</label>
-      <input type="text" id="color" name="color" placeholder="Black, White, Maroon..." required />
+      <input type="text" id="color" required placeholder="Black, White, Maroon.."/>
     </div>
-
     <div class="odf-field">
       <label for="size">Select Size</label>
-      <select id="size" name="size" required>
+      <select id="size" required>
         <option value="">Select one</option>
         <option value="S">S</option>
         <option value="M">M</option>
@@ -155,43 +129,157 @@
         <option value="3XL">3XL</option>
       </select>
     </div>
-
     <div class="odf-field">
       <label for="print">What Print Do You Want?</label>
-      <input type="text" id="print" name="printType" placeholder="A3, A4, A5..." required />
+      <input type="text" id="print" required placeholder="A5, A4, A3.."/>
       <a href="price.html">see what we have</a>
     </div>
-
     <div class="odf-field">
       <label for="quantity">Quantity</label>
-      <input type="number" id="quantity" name="quantity" min="1" required />
+      <input type="number" id="quantity" min="1" required />
     </div>
-
-    <!-- File Uploads -->
     <div class="odf-field">
-      <label for="file1">Upload Mockup File</label>
-      <input type="file" id="file1" name="mockupFile" accept="image/*,.pdf,.ai,.psd,.zip" />
-    </div>
-
-    <div class="odf-field">
-      <label for="file2">Upload Design File</label>
-      <input type="file" id="file2" name="designFile" accept="image/*,.pdf,.ai,.psd,.zip" />
-    </div>
-<div class="odf-field">
-      <label for="print">Enter Your Resell Price </label>
+      <label for="price">Enter Your Resell Price</label>
       <p>This Will Be (-) From Cost Price And, The Extra Amount Is Your Profit!</p>
-      <input type="text" id="print" name="printType" placeholder="500tk, 600tk" required />
+      <input type="text" id="price" placeholder="500tk, 600tk" required />
     </div>
-    <!-- Note -->
+    <!-- Custom Telegram Confirmation Modal -->
+<style>
+  #customAlert {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid #01003c;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+  }
+  #customAlert h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #01003c;
+  }
+  #customAlert p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  #customAlert a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0088cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  #customAlert a:hover {
+    background-color: #0077b3;
+  }
+  #customAlert .close-btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 18px;
+    background-color: #01003c;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 9998;
+  }
+</style>
+
+<div id="overlay"></div>
+<div id="customAlert">
+  <h2>🎉 Order Received!</h2>
+  <p>Now please send your design and mockup file to us via Messenger:</p>
+  <p style="color: #333">*Send It On HD*</p>
+  <a href="https://m.me/61577311430634" target="_blank">Open Messenger</a><br>
+  <span class="close-btn" onclick="hideCustomAlert()">Close</span>
+</div>
+
+<script>
+const botToken = '7681391311:AAFHkC0yIodefhvM8fTZ-lD5EtNwwTJHJOs';
+const chatId = '7992860091';
+
+const form = document.getElementById('telegramOrderForm');
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById('your-name').value,
+    email: document.getElementById('your-email').value,
+    phone: document.getElementById('your-phone').value,
+    customerName: document.getElementById('customer-name').value,
+    customerPhone: document.getElementById('customer-phone').value,
+    address: document.getElementById('address').value,
+    product: document.getElementById('product').value,
+    color: document.getElementById('color').value,
+    size: document.getElementById('size').value,
+    print: document.getElementById('print').value,
+    quantity: document.getElementById('quantity').value,
+    resellPrice: document.getElementById('price').value,
+    note: document.getElementById('note').value
+  };
+
+  const message = `📦 *New Order from Website*\n\n👤 Name: ${data.name}\n📧 Email: ${data.email}\n📞 Phone: ${data.phone}\n
+👤 Customer: ${data.customerName}\n📞 Customer Phone: ${data.customerPhone}\n🏠 Address: ${data.address}\n
+🏦 Product: ${data.product}\n🖊️ Color: ${data.color}\n🔹 Size: ${data.size}\n📏 Print: ${data.print}\n📉 Quantity: ${data.quantity}\n💰 Resell Price: ${data.resellPrice}\n
+📌 Note: ${data.note}`;
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "Markdown"
+    })
+  })
+  .then(res => res.json())
+  .then(response => {
+    if (response.ok) {
+      form.reset();
+      showCustomAlert();
+    } else {
+      alert("❌ Order failed to send. Please try again.");
+      console.error(response);
+    }
+  })
+  .catch(error => {
+    console.error("Telegram Error:", error);
+    alert("❌ Network issue. Try again later.");
+  });
+});
+
+function showCustomAlert() {
+  document.getElementById('customAlert').style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+function hideCustomAlert() {
+  document.getElementById('customAlert').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+</script>
     <div class="odf-field">
       <label for="note">Additional Instructions</label>
-      <textarea id="note" name="additionalInstructions" placeholder="Design ta front/back a bosbe..."></textarea>
+      <textarea id="note" placeholder="Design ta front/back a bosbe..."></textarea>
     </div>
-
-    <!-- Submit -->
     <button type="submit" class="odf-submit">Submit Order</button>
   </form>
 </div>
-
 </body>
-</html>
+        </html>
