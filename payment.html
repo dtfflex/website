@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DTFFLEX Payment Request</title>
+  <title>Telegram Order • DTFFLEX</title>
   <link rel="icon" href="img/favicon.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -93,9 +93,9 @@
 <body>
 
   <div class="form-container">
-    <h1 class="form-title">Payment Request • DTFFLEX</h1>
+    <h1 class="form-title">Place Order • DTFFLEX</h1>
 
-    <form method="POST" action="https://formsubmit.co/dtfflex@gmail.com" enctype="multipart/form-data">
+    <form id="telegramForm">
       <div class="form-field">
         <label for="name">Your Name*</label>
         <input type="text" id="name" name="name" required placeholder="Enter your full name">
@@ -103,26 +103,75 @@
 
       <div class="form-field">
         <label for="orderCode">Order Code*</label>
-        <input type="text" id="orderCode" name="orderCode" required placeholder="Enter the code you received">
+        <input type="text" id="orderCode" name="orderCode" required placeholder="Enter your order code">
       </div>
 
       <div class="form-field">
         <label for="method">Payment Method*</label>
         <select id="method" name="method" required>
           <option value="">Select one</option>
-          <option value="bKash">bKash</option>
-          <option value="Nagad">Nagad</option>
+          <option value="Bikash">Bikash</option>
+          <option value="Nogod">Nogod</option>
         </select>
       </div>
 
       <div class="form-field">
-        <label for="transactionId">Account Phone Number*</label>
+        <label for="transactionId">Account Number*</label>
         <input type="text" id="transactionId" name="transactionId" required placeholder="01734XXXXXX">
       </div>
 
-      <button class="submit-btn" type="submit">Submit Payment Request</button>
+      <button class="submit-btn" type="submit">Submit Order</button>
     </form>
   </div>
 
+  <script>
+    const form = document.getElementById('telegramForm');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const token = '7681391311:AAFHkC0yIodefhvM8fTZ-lD5EtNwwTJHJOs';
+      const chatId = '7992860091';
+
+      const name = document.getElementById('name').value;
+      const code = document.getElementById('orderCode').value;
+      const method = document.getElementById('method').value;
+      const phone = document.getElementById('transactionId').value;
+
+      const message = `
+🔔 *Payment Request Received*
+👤 Name: ${name}
+🆔 Order Code: ${code}
+📦 Method: ${method}
+📞 Phone: ${phone}
+      `;
+
+      const url = `https://api.telegram.org/bot${token}/sendMessage`;
+      const data = {
+        chat_id: chatId,
+        text: message,
+        parse_mode: 'Markdown'
+      };
+
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          alert('✅  Payment Request Successfully Send!');
+          form.reset();
+        } else {
+          alert('❌ Failed to send order.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Error sending data to Telegram.');
+      }
+    });
+  </script>
+
 </body>
-</html>
+                                         </html>
