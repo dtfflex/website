@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -63,223 +64,252 @@
     .odf-submit:hover {
       background-color: #1a1a5e;
     }
-    #dropship {
-      border: 2px solid #000;
-      border-radius: 14px 14px 4px 4px;
-      padding: 16px;
-      font-size: 0.95rem;
-      transform: translateX(-40px);
-      animation: slideInNote 0.8s ease-out forwards;
-      animation-delay: 1s;
-      margin-bottom: 20px;
-      margin-left: 25px;
-      width: 100%;
+    #customAlert {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 2px solid #01003c;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
     }
+    #customAlert h2 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #01003c;
+    }
+    #customAlert p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    #customAlert a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0088cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    #customAlert a:hover {
+      background-color: #0077b3;
+    }
+    #customAlert .close-btn {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 8px 18px;
+      background-color: #01003c;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 9998;
+    }
+    #dropship {  
+      border: 2px solid #000;  
+      border-radius: 14px 14px 4px;
+      padding: 15px;
+      margin-left: -10px;
+      width: 95%;
+      margin-bottom: 20px;
   </style>
 </head>
 <body>
-<div class="odf-container">
-  <h1 class="odf-title">Place Your Order</h1>  <div id="dropship">
-📌 <strong>Dropshipping Note*:</strong>  আমাদের কাছ থেকে যদি আপনি ড্রপশিপিং না করতে পারেন তাহলে নিচে দোয়া
-    <a href="https://www.youtube.com/watch?v=COdICL7bANA&si=E8zKQ4fdPnfFi3Mr" target="_blank">Watch Video</a> তে ক্লিক করে কিভাবে অর্ডার করবেন তা দেখে নিন!
+  <div class="odf-container">
+    <h1 class="odf-title">Place Your Order</h1>
+    <div id="dropship">
+      📌 <strong>Dropshipping Note*:</strong>  আমাদের কাছ থেকে যদি আপনি ড্রপশিপিং না করতে পারেন তাহলে নিচে দোয়া
+      <a href="https://www.youtube.com/watch?v=COdICL7bANA&si=E8zKQ4fdPnfFi3Mr" target="_blank">Watch Video</a> তে ক্লিক করে কিভাবে অর্ডার করবেন তা দেখে নিন!
     </div>
+
     <form id="telegramOrderForm">
-    <div class="odf-field">
-      <label for="your-name">Your Name*</label>
-      <input type="text" id="your-name" required / placeholder="Enter Your Name">
-    </div>
-    <div class="odf-field">
-      <label for="your-email">Your Email Address*</label>
-      <input type="email" id="your-email" required placeholder="Enter You Email Address"/>
-    </div>
-    <div class="odf-field">
-      <label for="your-phone">Your Phone Number*</label>
-      <input type="tel" id="your-phone" required placeholder="Enter Your Phone Number (We Call You)" />
-    </div>
-    <div class="odf-field">
-      <label for="customer-name">Customer Name*</label>
-      <input type="text" id="customer-name" required placeholder="Enter Your Customer Name"/>
-    </div>
-    <div class="odf-field">
-      <label for="customer-phone">Customer Phone Number*</label>
-      <input type="tel" id="customer-phone" required placeholder="Enter Your Customer Phone Number"/>
-    </div>
-    <div class="odf-field">
-      <label for="address">Customer Address*</label>
-      <textarea id="address" required placeholder="Enter Customer Address (Where We Deliver The Product)"></textarea>
-    </div>
-    <div class="odf-field">
-      <label for="product">What Do You Want?</label>
-      <input type="text" id="product" required placeholder="Dropshoulder, Regular Fit, Acid W. D., Tote Bag.." />
-      <a href="price.html">see what we have</a>
-    </div>
-    <div class="odf-field">
-      <label for="color">What Colour You Want?</label>
-      <input type="text" id="color" required placeholder="Black, White, Maroon.."/>
-    </div>
-    <div class="odf-field">
-      <label for="size">Select Size</label>
-      <select id="size" required>
-        <option value="">Select one</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-        <option value="2XL">2XL</option>
-        <option value="3XL">3XL</option>
-      </select>
-    </div>
-    <div class="odf-field">
-      <label for="print">What Print Do You Want?</label>
-      <input type="text" id="print" required placeholder="A5, A4, A3.."/>
-      <a href="price.html">see what we have</a>
-    </div>
-    <div class="odf-field">
-      <label for="quantity">Quantity</label>
-      <input type="number" id="quantity" min="1" required />
-    </div>
-    <div class="odf-field">
-      <label for="price">Enter Your Resell Price</label>
-      <p>This Will Be (-) From Cost Price And, The Extra Amount Is Your Profit!</p>
-      <input type="text" id="price" placeholder="500tk, 600tk" required />
-    </div>
-    <!-- Custom Telegram Confirmation Modal -->
-<style>
-  #customAlert {
-    display: none;
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 2px solid #01003c;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    text-align: center;
-    max-width: 90%;
-    width: 400px;
-  }
-  #customAlert h2 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: #01003c;
-  }
-  #customAlert p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-  }
-  #customAlert a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0088cc;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-  }
-  #customAlert a:hover {
-    background-color: #0077b3;
-  }
-  #customAlert .close-btn {
-    margin-top: 20px;
-    display: inline-block;
-    padding: 8px 18px;
-    background-color: #01003c;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  #overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: 9998;
-  }
-</style>
 
-<div id="overlay"></div>
-<div id="customAlert">
-  <h2>🎉 Order Received!</h2>
-  <p>Now please send your design and mockup file to us via Messenger:</p>
-  <p style="color: #333">*Send It On HD*</p>
-  <a href="https://m.me/61577311430634" target="_blank">Open Messenger</a><br>
-  <span class="close-btn" onclick="hideCustomAlert()">Close</span>
-</div>
+      <div class="odf-field">
+        <label for="your-name">Your Name*</label>
+        <input type="text" id="your-name" required placeholder="Enter Your Name" />
+      </div>
 
-<script>
-const botToken = '7681391311:AAFHkC0yIodefhvM8fTZ-lD5EtNwwTJHJOs';
-const chatId = '7992860091';
+      <div class="odf-field">
+        <label for="your-email">Your Email Address*</label>
+        <input type="email" id="your-email" required placeholder="Enter Your Email Address" />
+      </div>
 
-const form = document.getElementById('telegramOrderForm');
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+      <div class="odf-field">
+        <label for="your-phone">Your Phone Number*</label>
+        <input type="tel" id="your-phone" required placeholder="Enter Your Phone Number" />
+      </div>
 
-  const data = {
-    name: document.getElementById('your-name').value,
-    email: document.getElementById('your-email').value,
-    phone: document.getElementById('your-phone').value,
-    customerName: document.getElementById('customer-name').value,
-    customerPhone: document.getElementById('customer-phone').value,
-    address: document.getElementById('address').value,
-    product: document.getElementById('product').value,
-    color: document.getElementById('color').value,
-    size: document.getElementById('size').value,
-    print: document.getElementById('print').value,
-    quantity: document.getElementById('quantity').value,
-    resellPrice: document.getElementById('price').value,
-    note: document.getElementById('note').value
-  };
+      <div class="odf-field">
+        <label for="customer-name">Customer Name*</label>
+        <input type="text" id="customer-name" required placeholder="Customer Full Name" />
+      </div>
 
-  const message = `📦 *New Order from Website*\n\n👤 Name: ${data.name}\n📧 Email: ${data.email}\n📞 Phone: ${data.phone}\n
+      <div class="odf-field">
+        <label for="customer-phone">Customer Phone Number*</label>
+        <input type="tel" id="customer-phone" required placeholder="Customer Mobile Number" />
+      </div>
+
+      <div class="odf-field">
+        <label for="address">Customer Address*</label>
+        <textarea id="address" required placeholder="Full delivery address"></textarea>
+      </div>
+
+      <div class="odf-field">
+        <label for="product">Product</label>
+        <input type="text" id="product" required placeholder="Dropshoulder, Regular Fit, Tote Bag..." />
+      </div>
+
+      <div class="odf-field">
+        <label for="color">Color</label>
+        <input type="text" id="color" required placeholder="Black, White, Maroon, etc." />
+      </div>
+
+      <div class="odf-field">
+        <label for="size">Size</label>
+        <select id="size" required>
+          <option value="">Select one</option>
+          <option>S</option><option>M</option><option>L</option>
+          <option>XL</option><option>2XL</option><option>3XL</option>
+        </select>
+      </div>
+
+      <div class="odf-field">
+        <label for="print">Print Type</label>
+        <input type="text" id="print" required placeholder="A5, A4, A3" />
+      </div>
+
+      <div class="odf-field">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" required min="1" />
+      </div>
+
+      <div class="odf-field">
+        <label for="price">Your Resell Price</label>
+        <p style="margin: 4px 0; color: gray;">(We minus it from cost price. Extra is your profit!)</p>
+        <input type="text" id="price" required placeholder="E.g. 500tk" />
+      </div>
+
+      <div class="odf-field">
+        <label for="note">Additional Instructions</label>
+        <textarea id="note" placeholder="Design ta front/back a bosbe etc..."></textarea>
+      </div>
+
+      <!-- 💳 Nagad Payment Section -->
+      <div style="border: 2px solid #e60044; background: #fff5f8; padding: 20px; border-radius: 12px; margin-top: 30px;">
+        <h3 style="color: #e60044;">📢 Payment Instruction</h3>
+        <p>You must pay the <strong>cost price first</strong>. See <a href="price.html" target="_blank" style="color: #e60044;">price chart</a> before paying.</p>
+
+        <p><strong>Send to:</strong> <span style="font-weight: bold; font-size: 18px;">01706441482</span></p>
+
+        <label>TXID (Transaction ID)</label>
+        <input type="text" id="txid" required placeholder="e.g. TX1234ABC" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+
+        <label>Merchant Name</label>
+        <input type="text" id="merchant_name" required placeholder="Your Name" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+
+        <label>Last 4 Digits of Nagad Number</label>
+        <input type="text" id="nagad_last4" maxlength="4" required placeholder="e.g. 1234" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+
+        <label>Amount Sent (৳)</label>
+        <input type="number" id="amount_sent" required placeholder="e.g. 350" style="width: 100%; padding: 8px;">
+      </div>
+
+      <!-- 🔘 Submit Button -->
+      <button type="submit" class="odf-submit" style="margin-top: 20px;">Submit Order</button>
+    </form>
+  </div>
+
+  <!-- ✅ Custom Alert -->
+  <div id="overlay"></div>
+  <div id="customAlert">
+    <h2>🎉 Order Received!</h2>
+    <p>Please send your design and mockup file now via Messenger 👇</p>
+    <a href="https://m.me/61577311430634" target="_blank">Send via Messenger</a>
+    <div class="close-btn" onclick="hideCustomAlert()">Close</div>
+  </div>
+
+  <script>
+    const botToken = '7681391311:AAFHkC0yIodefhvM8fTZ-lD5EtNwwTJHJOs';
+    const chatId = '7992860091';
+
+    const form = document.getElementById('telegramOrderForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById('your-name').value,
+        email: document.getElementById('your-email').value,
+        phone: document.getElementById('your-phone').value,
+        customerName: document.getElementById('customer-name').value,
+        customerPhone: document.getElementById('customer-phone').value,
+        address: document.getElementById('address').value,
+        product: document.getElementById('product').value,
+        color: document.getElementById('color').value,
+        size: document.getElementById('size').value,
+        print: document.getElementById('print').value,
+        quantity: document.getElementById('quantity').value,
+        resellPrice: document.getElementById('price').value,
+        note: document.getElementById('note').value,
+        txid: document.getElementById('txid').value,
+        merchantName: document.getElementById('merchant_name').value,
+        nagadLast4: document.getElementById('nagad_last4').value,
+        amountSent: document.getElementById('amount_sent').value
+      };
+
+      const message = `📦 *New Order from Website*\n\n👤 Name: ${data.name}\n📧 Email: ${data.email}\n📞 Phone: ${data.phone}\n
 👤 Customer: ${data.customerName}\n📞 Customer Phone: ${data.customerPhone}\n🏠 Address: ${data.address}\n
 🏦 Product: ${data.product}\n🖊️ Color: ${data.color}\n🔹 Size: ${data.size}\n📏 Print: ${data.print}\n📉 Quantity: ${data.quantity}\n💰 Resell Price: ${data.resellPrice}\n
-📌 Note: ${data.note}`;
+📌 Note: ${data.note}\n
+💳 *Nagad Payment Info:*\n• TXID: ${data.txid}\n• Merchant Name: ${data.merchantName}\n• Last 4 Digits: ${data.nagadLast4}\n• Amount Sent: ৳${data.amountSent}`;
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: message,
-      parse_mode: "Markdown"
-    })
-  })
-  .then(res => res.json())
-  .then(response => {
-    if (response.ok) {
-      form.reset();
-      showCustomAlert();
-    } else {
-      alert("❌ Order failed to send. Please try again.");
-      console.error(response);
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          showCustomAlert();
+        } else {
+          alert("❌ Order failed to send. Please try again.");
+          console.error(response);
+        }
+      })
+      .catch(error => {
+        console.error("Telegram Error:", error);
+        alert("❌ Network issue. Try again later.");
+      });
+    });
+
+    function showCustomAlert() {
+      document.getElementById('customAlert').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
     }
-  })
-  .catch(error => {
-    console.error("Telegram Error:", error);
-    alert("❌ Network issue. Try again later.");
-  });
-});
 
-function showCustomAlert() {
-  document.getElementById('customAlert').style.display = 'block';
-  document.getElementById('overlay').style.display = 'block';
-}
-function hideCustomAlert() {
-  document.getElementById('customAlert').style.display = 'none';
-  document.getElementById('overlay').style.display = 'none';
-}
-</script>
-    <div class="odf-field">
-      <label for="note">Additional Instructions</label>
-      <textarea id="note" placeholder="Design ta front/back a bosbe..."></textarea>
-    </div>
-    <button type="submit" class="odf-submit">Submit Order</button>
-  </form>
-</div>
+    function hideCustomAlert() {
+      document.getElementById('customAlert').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
 </body>
-        </html>
+  </html>
