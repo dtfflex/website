@@ -365,7 +365,88 @@
 </script>
 
   </section>
+<!-- Include This in Your <head> (only once) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  .info-section {
+    font-family: 'Poppins', sans-serif;
+    background: none;
+    padding: 30px 20px;
+    color: #111;
+    text-align: center;
+    overflow: hidden;
+  }
+  .info-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .info-box {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+  .info-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .info-box p {
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: left;
+    margin: 5px 0;
+  }
+  .highlight {
+    font-weight: 600;
+    color: #e91e63; /* DTFFLEX pink */
+  }
+</style>
 
+<!-- Add This Before </body> -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const boxes = document.querySelectorAll('.info-box');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    boxes.forEach(box => {
+      observer.observe(box);
+    });
+  });
+</script>
+
+<!-- 🧵 Fabric & Size Info Section -->
+<div class="info-section">
+  <div class="info-box">
+    <h2>Fabric Details 🧵</h2>
+    <p><span class="highlight">Fabric:</span> 95% Cotton & 5% Lycra</p>
+    <p><span class="highlight">Weight/Thickness:</span> 190-210 GSM</p>
+    <p>Crew Neck</p>
+    <p>Wash Guaranteed</p>
+  </div>
+
+  <div class="info-box">
+    <h2>Size Chart 📌</h2>
+    <p><span class="highlight">S:</span> Chest-40" / Length-27"</p>
+    <p><span class="highlight">M:</span> Chest-42" / Length-27.5"</p>
+    <p><span class="highlight">L:</span> Chest-44" / Length-28.5"</p>
+    <p><span class="highlight">XL:</span> Chest-46" / Length-29.2"</p>
+    <p><span class="highlight">2XL:</span> Chest-48" / Length-30.2"</p>
+  </div>
+</div>
 
 <section id="services" class="section" data-aos="fade-up">
     <h2>Our Services</h2>
