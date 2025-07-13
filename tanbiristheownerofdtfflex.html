@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DTFFLEX Admin</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    .hidden { display: none; }
+    header {
+      background: #0c1446;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .tabs button {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      background: #e0e0e0;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .tabs button.active {
+      background: #ff3f81;
+      color: white;
+    }
+    .order-form, .orders-table, .search-box {
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.6rem;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .status {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+    .status.processing { color: #ff9800; }
+    .status.courier { color: #2196f3; }
+    .status.delivered { color: #4caf50; }
+    .status.payment { color: #ff5722; }
+    .status.done { color: #009688; }
+    @media (max-width: 600px) {
+      .tabs { flex-direction: column; }
+      th, td { font-size: 14px; }
+    }
+    .toggle-btn {
+      background: #0c1446;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DTFFLEX Admin</h1>
+  </header>
+  <div class="container"><div class="search-box">
+  <h3>Search Order by ID</h3>
+  <input type="text" id="searchID" placeholder="Enter Order ID">
+  <button onclick="searchOrder()">Search</button>
+  <div id="searchResult"></div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="filterStatus('all')">All</button>
+  <button class="tab-btn" onclick="filterStatus('processing')">Processing</button>
+  <button class="tab-btn" onclick="filterStatus('courier')">Submitted to Courier</button>
+  <button class="tab-btn" onclick="filterStatus('delivered')">Delivered</button>
+  <button class="tab-btn" onclick="filterStatus('payment')">Payment Requested</button>
+  <button class="tab-btn" onclick="filterStatus('done')">Payment Done</button>
+</div>
+
+<button class="toggle-btn" onclick="toggleForm()">Data Entry</button>
+
+<div class="order-form hidden" id="orderForm">
+  <h2>Add New Parcel</h2>
+  <input type="text" id="merchant" placeholder="Merchant Name">
+  <input type="text" id="orderid" placeholder="Order ID">
+  <input type="text" id="name" placeholder="Customer Name">
+  <input type="text" id="product" placeholder="Product">
+  <input type="text" id="address" placeholder="Address">
+  <input type="text" id="price" placeholder="Price">
+  <button onclick="addOrder()">Add Order</button>
+</div>
+
+<div class="orders-table">
+  <h2>Orders</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Merchant</th>
+        <th>Name</th>
+        <th>Product</th>
+        <th>Address</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="orderList"></tbody>
+  </table>
+</div>
+
+  </div>  <script>
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    function renderOrders(filter = 'all') {
+      const list = document.getElementById("orderList");
+      list.innerHTML = "";
+      orders.forEach((order, index) => {
+        if (filter === 'all' || order.status === filter) {
+          list.innerHTML += `
+            <tr>
+              <td>${order.orderid}</td>
+              <td>${order.merchant}</td>
+              <td>${order.name}</td>
+              <td>${order.product}</td>
+              <td>${order.address}</td>
+              <td>${order.date}</td>
+              <td class="status ${order.status}">${order.status}</td>
+              <td>
+                <select onchange="updateStatus(${index}, this.value)">
+                  <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Processing</option>
+                  <option value="courier" ${order.status === 'courier' ? 'selected' : ''}>Courier</option>
+                  <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                  <option value="payment" ${order.status === 'payment' ? 'selected' : ''}>Payment Requested</option>
+                  <option value="done" ${order.status === 'done' ? 'selected' : ''}>Payment Done</option>
+                </select>
+              </td>
+              <td><button class="delete-btn" onclick="deleteOrder(${index})">Delete</button></td>
+            </tr>
+          `;
+        }
+      });
+    }
+
+    function addOrder() {
+      const merchant = document.getElementById("merchant").value;
+      const orderid = document.getElementById("orderid").value;
+      const name = document.getElementById("name").value;
+      const product = document.getElementById("product").value;
+      const address = document.getElementById("address").value;
+      const price = document.getElementById("price").value;
+      const date = new Date().toLocaleDateString();
+
+      if (merchant && orderid && name && product && address) {
+        orders.push({ merchant, orderid, name, product, address, price, date, status: 'processing' });
+        localStorage.setItem("orders", JSON.stringify(orders));
+        renderOrders();
+        ["merchant","orderid","name","product","address","price"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("orderForm").classList.add("hidden");
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+
+    function deleteOrder(index) {
+      if (confirm("Are you sure you want to delete this order?")) {
+        orders.splice(index, 1);
+        localStorage.setItem("orders", JSON.stringify(orders));
+        renderOrders();
+      }
+    }
+
+    function updateStatus(index, status) {
+      orders[index].status = status;
+      localStorage.setItem("orders", JSON.stringify(orders));
+      renderOrders();
+    }
+
+    function filterStatus(status) {
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+      renderOrders(status);
+    }
+
+    function searchOrder() {
+      const searchID = document.getElementById("searchID").value.trim();
+      const resultBox = document.getElementById("searchResult");
+      const found = orders.find(o => o.orderid === searchID);
+      if (found) {
+        resultBox.innerHTML = `
+          <p><strong>Merchant:</strong> ${found.merchant}</p>
+          <p><strong>Customer:</strong> ${found.name}</p>
+          <p><strong>Status:</strong> ${found.status}</p>
+          <p><strong>Date:</strong> ${found.date}</p>
+        `;
+      } else {
+        resultBox.innerHTML = `<p style="color:red">No order found with this ID</p>`;
+      }
+    }
+
+    function toggleForm() {
+      const form = document.getElementById("orderForm");
+      form.classList.toggle("hidden");
+    }
+
+    renderOrders();
+  </script></body>
+</html>
