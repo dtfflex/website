@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -90,150 +89,152 @@
   </style>
 </head>
 <body>
-  <header><h1>DTFFLEX Admin</h1></header>
-  <div class="container">
-    <div class="search-box">
-      <h3>Search Order by ID</h3>
-      <input type="text" id="searchID" placeholder="Enter Order ID">
-      <button onclick="searchOrder()">Search</button>
-      <div id="searchResult"></div>
-    </div>
+  <header>
+    <h1>DTFFLEX Admin</h1>
+  </header>
+  <div class="container"><div class="search-box">
+  <h3>Search Order by ID</h3>
+  <input type="text" id="searchID" placeholder="Enter Order ID">
+  <button onclick="searchOrder()">Search</button>
+  <div id="searchResult"></div>
+</div>
 
-    <div class="tabs">
-      <button class="tab-btn active" onclick="filterStatus('all')">All</button>
-      <button class="tab-btn" onclick="filterStatus('processing')">Processing</button>
-      <button class="tab-btn" onclick="filterStatus('courier')">Submitted to Courier</button>
-      <button class="tab-btn" onclick="filterStatus('delivered')">Delivered</button>
-      <button class="tab-btn" onclick="filterStatus('payment')">Payment Requested</button>
-      <button class="tab-btn" onclick="filterStatus('done')">Payment Done</button>
-    </div>
+<div class="tabs">
+  <button class="tab-btn active" onclick="filterStatus('all')">All</button>
+  <button class="tab-btn" onclick="filterStatus('processing')">Processing</button>
+  <button class="tab-btn" onclick="filterStatus('courier')">Submitted to Courier</button>
+  <button class="tab-btn" onclick="filterStatus('delivered')">Delivered</button>
+  <button class="tab-btn" onclick="filterStatus('payment')">Payment Requested</button>
+  <button class="tab-btn" onclick="filterStatus('done')">Payment Done</button>
+</div>
 
-    <button class="toggle-btn" onclick="toggleForm()">Data Entry</button>
+<button class="toggle-btn" onclick="toggleForm()">Data Entry</button>
 
-    <div class="order-form hidden" id="orderForm">
-      <h2>Add New Parcel</h2>
-      <input type="text" id="merchant" placeholder="Merchant Name">
-      <input type="text" id="orderid" placeholder="Order ID">
-      <input type="text" id="name" placeholder="Customer Name">
-      <input type="text" id="product" placeholder="Product">
-      <input type="text" id="address" placeholder="Address">
-      <input type="text" id="price" placeholder="Price">
-      <button onclick="addOrder()">Add Order</button>
-    </div>
+<div class="order-form hidden" id="orderForm">
+  <h2>Add New Parcel</h2>
+  <input type="text" id="merchant" placeholder="Merchant Name">
+  <input type="text" id="orderid" placeholder="Order ID">
+  <input type="text" id="name" placeholder="Customer Name">
+  <input type="text" id="product" placeholder="Product">
+  <input type="text" id="address" placeholder="Address">
+  <input type="text" id="price" placeholder="Price">
+  <button onclick="addOrder()">Add Order</button>
+</div>
 
-    <div class="orders-table">
-      <h2>Orders</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Merchant</th>
-            <th>Name</th>
-            <th>Product</th>
-            <th>Address</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Update</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody id="orderList"></tbody>
-      </table>
-    </div>
-  </div>
+<div class="orders-table">
+  <h2>Orders</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Merchant</th>
+        <th>Name</th>
+        <th>Product</th>
+        <th>Address</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="orderList"></tbody>
+  </table>
+</div>
 
-<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbzEdrSdnroUdmyPee_XA06TZ0UPqZ7rUI53ThF0QhCHCi5w9UJEtDPQTmHFyYr1zECpJg/exe";
-let orders = [];
+  </div>  <script>
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-// Fetch orders from sheet
-function loadOrders() {
-  fetch(API_URL)
-    .then(res => res.json())
-    .then(data => {
-      orders = data;
-      renderOrders();
-    })
-    .catch(err => alert("Failed to load orders."));
-}
-
-function renderOrders(filter = 'all') {
-  const list = document.getElementById("orderList");
-  list.innerHTML = "";
-  orders.forEach((order, index) => {
-    if (filter === 'all' || order.status === filter) {
-      list.innerHTML += `
-        <tr>
-          <td>${order.orderid}</td>
-          <td>${order.merchant}</td>
-          <td>${order.name}</td>
-          <td>${order.product}</td>
-          <td>${order.address}</td>
-          <td>${order.date || ''}</td>
-          <td class="status ${order.status}">${order.status}</td>
-          <td><i style="color:#aaa">Only editable in Google Sheet</i></td>
-          <td><i style="color:#aaa">Only deletable in Sheet</i></td>
-        </tr>`;
+    function renderOrders(filter = 'all') {
+      const list = document.getElementById("orderList");
+      list.innerHTML = "";
+      orders.forEach((order, index) => {
+        if (filter === 'all' || order.status === filter) {
+          list.innerHTML += `
+            <tr>
+              <td>${order.orderid}</td>
+              <td>${order.merchant}</td>
+              <td>${order.name}</td>
+              <td>${order.product}</td>
+              <td>${order.address}</td>
+              <td>${order.date}</td>
+              <td class="status ${order.status}">${order.status}</td>
+              <td>
+                <select onchange="updateStatus(${index}, this.value)">
+                  <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Processing</option>
+                  <option value="courier" ${order.status === 'courier' ? 'selected' : ''}>Courier</option>
+                  <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                  <option value="payment" ${order.status === 'payment' ? 'selected' : ''}>Payment Requested</option>
+                  <option value="done" ${order.status === 'done' ? 'selected' : ''}>Payment Done</option>
+                </select>
+              </td>
+              <td><button class="delete-btn" onclick="deleteOrder(${index})">Delete</button></td>
+            </tr>
+          `;
+        }
+      });
     }
-  });
-}
 
-function addOrder() {
-  const merchant = document.getElementById("merchant").value;
-  const orderid = document.getElementById("orderid").value;
-  const name = document.getElementById("name").value;
-  const product = document.getElementById("product").value;
-  const address = document.getElementById("address").value;
-  const price = document.getElementById("price").value;
+    function addOrder() {
+      const merchant = document.getElementById("merchant").value;
+      const orderid = document.getElementById("orderid").value;
+      const name = document.getElementById("name").value;
+      const product = document.getElementById("product").value;
+      const address = document.getElementById("address").value;
+      const price = document.getElementById("price").value;
+      const date = new Date().toLocaleDateString();
 
-  if (merchant && orderid && name && product && address) {
-    fetch(API_URL, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        merchant, orderid, name, product, address, price,
-        status: "processing"
-      })
-    })
-    .then(res => res.text())
-    .then(msg => {
-      alert("Order saved!");
-      document.querySelectorAll("#orderForm input").forEach(input => input.value = "");
-      document.getElementById("orderForm").classList.add("hidden");
-      loadOrders();
-    })
-    .catch(err => alert("Error saving order."));
-  } else {
-    alert("Please fill in all fields.");
-  }
-}
+      if (merchant && orderid && name && product && address) {
+        orders.push({ merchant, orderid, name, product, address, price, date, status: 'processing' });
+        localStorage.setItem("orders", JSON.stringify(orders));
+        renderOrders();
+        ["merchant","orderid","name","product","address","price"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("orderForm").classList.add("hidden");
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
 
-function filterStatus(status) {
-  document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
-  renderOrders(status);
-}
+    function deleteOrder(index) {
+      if (confirm("Are you sure you want to delete this order?")) {
+        orders.splice(index, 1);
+        localStorage.setItem("orders", JSON.stringify(orders));
+        renderOrders();
+      }
+    }
 
-function searchOrder() {
-  const searchID = document.getElementById("searchID").value.trim().toLowerCase();
-  const resultBox = document.getElementById("searchResult");
-  const found = orders.find(o => o.orderid && o.orderid.toLowerCase() === searchID);
-  if (found) {
-    resultBox.innerHTML = `
-      <p><strong>Merchant:</strong> ${found.merchant}</p>
-      <p><strong>Customer:</strong> ${found.name}</p>
-      <p><strong>Status:</strong> ${found.status}</p>
-      <p><strong>Date:</strong> ${found.date || ''}</p>`;
-  } else {
-    resultBox.innerHTML = `<p style="color:red">No order found with this ID</p>`;
-  }
-}
+    function updateStatus(index, status) {
+      orders[index].status = status;
+      localStorage.setItem("orders", JSON.stringify(orders));
+      renderOrders();
+    }
 
-function toggleForm() {
-  document.getElementById("orderForm").classList.toggle("hidden");
-}
+    function filterStatus(status) {
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+      renderOrders(status);
+    }
 
-loadOrders();
-</script>
-</body>
-</html>
+    function searchOrder() {
+      const searchID = document.getElementById("searchID").value.trim();
+      const resultBox = document.getElementById("searchResult");
+      const found = orders.find(o => o.orderid === searchID);
+      if (found) {
+        resultBox.innerHTML = `
+          <p><strong>Merchant:</strong> ${found.merchant}</p>
+          <p><strong>Customer:</strong> ${found.name}</p>
+          <p><strong>Status:</strong> ${found.status}</p>
+          <p><strong>Date:</strong> ${found.date}</p>
+        `;
+      } else {
+        resultBox.innerHTML = `<p style="color:red">No order found with this ID</p>`;
+      }
+    }
+
+    function toggleForm() {
+      const form = document.getElementById("orderForm");
+      form.classList.toggle("hidden");
+    }
+
+    renderOrders();
+  </script></body>
+    </html>
