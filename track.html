@@ -283,16 +283,28 @@ statusHistory.forEach(update => {
 });
 
 historyHtml += "</div>";
-    <script>
+  </script>
+  <script>
   window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
+
     if (code) {
-      document.getElementById('orderId').value = code;
-      document.getElementById('orderBtn').click(); // auto search
+      const input = document.getElementById('orderId');
+      if (input) {
+        input.value = code;
+
+        const btn = document.getElementById('orderBtn');
+        if (btn) {
+          btn.click();
+        } else {
+          console.warn('Button with id "orderBtn" not found!');
+        }
+      } else {
+        console.warn('Input with id "orderId" not found!');
+      }
     }
   });
-</script>
   </script>
 </body>
   </html>
