@@ -155,7 +155,7 @@
   <div class="tracker-box">
     <h1>📦 Track Your DTFFLEX Order</h1>
     <input type="text" id="orderId" placeholder="Enter Your Order ID..." />
-    <button onclick="trackOrder()">🔍 Track Order</button>
+    <button id="orderBtn" onclick="trackOrder()">🔍 Track Order</button>
     <div id="result" class="result-box" style="display:none;"></div>
   </div>
   <script>
@@ -283,6 +283,16 @@ statusHistory.forEach(update => {
 });
 
 historyHtml += "</div>";
+    <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    if (code) {
+      document.getElementById('orderId').value = code;
+      document.getElementById('orderBtn').click(); // auto search
+    }
+  });
+</script>
   </script>
 </body>
   </html>
