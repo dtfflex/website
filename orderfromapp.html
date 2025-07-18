@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Form • DTFFLEX</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fdfdff url('https://www.transparenttextures.com/patterns/fabric-of-squares.png');
+      background-repeat: repeat;
+      color: #01003c;
+      scroll-behavior: smooth;
+    }
+    .odf-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .odf-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .odf-field {
+      margin-bottom: 20px;
+    }
+    .odf-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .odf-field input,
+    .odf-field select,
+    .odf-field textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    .odf-field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .odf-submit {
+      display: inline-block;
+      background-color: #01003c;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .odf-submit:hover {
+      background-color: #1a1a5e;
+    }
+    #customAlert {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 2px solid #01003c;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
+    }
+    #customAlert h2 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #01003c;
+    }
+    #customAlert p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+    #customAlert a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0088cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    #customAlert a:hover {
+      background-color: #0077b3;
+    }
+    #customAlert .close-btn {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 8px 18px;
+      background-color: #01003c;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 9998;
+    }
+    #dropship {  
+      border: 2px solid #000;  
+      border-radius: 14px 14px 4px;
+      padding: 15px;
+      margin-left: -10px;
+      width: 95%;
+      margin-bottom: 20px;
+  </style>
+</head>
+<body>
+  <div class="odf-container">
+    <h1 class="odf-title">Place Your Order</h1>
+    <div id="dropship">
+      📌 <strong>Dropshipping Note*:</strong>  আমাদের কাছ থেকে যদি আপনি ড্রপশিপিং না করতে পারেন তাহলে নিচে দোয়া
+      <a href="https://www.youtube.com/watch?v=COdICL7bANA&si=E8zKQ4fdPnfFi3Mr" target="_blank">Watch Video</a> তে ক্লিক করে কিভাবে অর্ডার করবেন তা দেখে নিন!
+    </div>
+
+    <form id="telegramOrderForm">
+
+      <div class="odf-field">
+        <label for="your-name">Your Name*</label>
+        <input type="text" id="your-name" required placeholder="Enter Your Name" />
+      </div>
+
+      <div class="odf-field">
+        <label for="your-email">Your Email Address*</label>
+        <input type="email" id="your-email" required placeholder="Enter Your Email Address" />
+      </div>
+
+      <div class="odf-field">
+        <label for="your-phone">Your Phone Number*</label>
+        <input type="tel" id="your-phone" required placeholder="Enter Your Phone Number" />
+      </div>
+
+      <div class="odf-field">
+        <label for="customer-name">Customer Name*</label>
+        <input type="text" id="customer-name" required placeholder="Customer Full Name" />
+      </div>
+
+      <div class="odf-field">
+        <label for="customer-phone">Customer Phone Number*</label>
+        <input type="tel" id="customer-phone" required placeholder="Customer Mobile Number" />
+      </div>
+
+      <div class="odf-field">
+        <label for="address">Customer Address*</label>
+        <textarea id="address" required placeholder="Full delivery address"></textarea>
+      </div>
+
+      <div class="odf-field">
+        <label for="product">Product</label>
+        <select id="product" required>
+          <option value="">Select one</option>
+          <option>Dropshoulder</option>
+          <option>Regular Fit</option>
+        </select>
+      </div>
+
+      <div class="odf-field">
+        <label for="color">Color</label>
+     <select id="color" required>
+          <option value="">Select one</option>
+          <option>Black</option><option>White</option><option>Gray</option>
+          <option>Maroon</option><option>Pink</option><option>Brown</option>
+        </select>
+      </div>
+
+      <div class="odf-field">
+        <label for="size">Size</label>
+        <select id="size" required>
+          <option value="">Select one</option>
+          <option>S</option><option>M</option><option>L</option>
+          <option>XL</option><option>2XL</option><option>3XL</option>
+        </select>
+      </div>
+
+      <div class="odf-field">
+        <label for="print">Print Type</label>
+        <select id="print" required>
+          <option value="">Select one</option>
+          <option>A2</option><option>A3</option><option>A4</option><option>A5</option><option>None</option>
+        </select>
+      </div>
+
+      <div class="odf-field">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" required min="1" />
+      </div>
+
+      <div class="odf-field">
+        <label for="price">Your Resell Price</label>
+        <p style="margin: 4px 0; color: gray;">(We minus it from cost price. Extra is your profit!)</p>
+        <input type="text" id="price" required placeholder="E.g. 500tk" />
+      </div>
+
+      <div class="odf-field">
+        <label for="note">Additional Instructions</label>
+        <textarea id="note" placeholder="Design ta front/back a bosbe etc..."></textarea>
+      </div>
+
+      <!-- 💳 Nagad Payment Section -->
+      <div style="border: 2px solid #e60044; background: #fff5f8; padding: 20px; border-radius: 12px; margin-top: 30px;">
+        <h3 style="color: #e60044;">📢 Payment Instruction</h3>
+        <p>You must pay the <strong>T-shirt price first</strong>. See <a href="price.html" target="_blank" style="color: #e60044;">price chart</a> before paying.</p>
+        <h2 style="text-decoration:underline; color: #e60044;">Nagad (Send Money)</h2>
+        <p><strong>Send to:</strong> <span style="font-weight: bold; font-size: 18px;">01706441482</span></p>
+       <p>Send Only The Tshirt Price </p>
+       <p>Dropshoulder = 220tk </p>
+       <p>Regular Fit = 190tk </p>
+        <label>TXID (Transaction ID)</label>
+        <input type="text" id="txid" required placeholder="e.g. TX1234ABC" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+
+        <label>Your Name</label>
+        <input type="text" id="merchant_name" required placeholder="Enter Your Name" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+
+        <label>Last 4 Digits of Nagad Number</label>
+        <input type="text" id="nagad_last4" maxlength="4" required placeholder="e.g. 1234" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+
+        <label>Amount Sent (৳)</label>
+        <input type="number" id="amount_sent" required placeholder="e.g. 350" style="width: 100%; padding: 8px;">
+      </div>
+
+      <!-- 🔘 Submit Button -->
+      <button type="submit" class="odf-submit" style="margin-top: 20px;">Submit Order</button>
+    </form>
+  </div>
+
+  <!-- ✅ Custom Alert -->
+  <div id="overlay"></div>
+  <div id="customAlert">
+    <h2>🎉 Order Received!</h2>
+    <p>Please send your design and mockup file using the "Send Design" Button 👇</p>
+    <div class="close-btn" onclick="hideCustomAlert()">Close</div>
+  </div>
+
+  <script>
+    const botToken = '7681391311:AAFHkC0yIodefhvM8fTZ-lD5EtNwwTJHJOs';
+    const chatId = '7992860091';
+
+    const form = document.getElementById('telegramOrderForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById('your-name').value,
+        email: document.getElementById('your-email').value,
+        phone: document.getElementById('your-phone').value,
+        customerName: document.getElementById('customer-name').value,
+        customerPhone: document.getElementById('customer-phone').value,
+        address: document.getElementById('address').value,
+        product: document.getElementById('product').value,
+        color: document.getElementById('color').value,
+        size: document.getElementById('size').value,
+        print: document.getElementById('print').value,
+        quantity: document.getElementById('quantity').value,
+        resellPrice: document.getElementById('price').value,
+        note: document.getElementById('note').value,
+        txid: document.getElementById('txid').value,
+        merchantName: document.getElementById('merchant_name').value,
+        nagadLast4: document.getElementById('nagad_last4').value,
+        amountSent: document.getElementById('amount_sent').value
+      };
+
+      const message = `📦 *New Order from App*\n\n👤 Name: ${data.name}\n📧 Email: ${data.email}\n📞 Phone: ${data.phone}\n
+👤 Customer: ${data.customerName}\n📞 Customer Phone: ${data.customerPhone}\n🏠 Address: ${data.address}\n
+🏦 Product: ${data.product}\n🖊️ Color: ${data.color}\n🔹 Size: ${data.size}\n📏 Print: ${data.print}\n📉 Quantity: ${data.quantity}\n💰 Resell Price: ${data.resellPrice}\n
+📌 Note: ${data.note}\n
+💳 *Nagad Payment Info:*\n• TXID: ${data.txid}\n• Merchant Name: ${data.merchantName}\n• Last 4 Digits: ${data.nagadLast4}\n• Amount Sent: ৳${data.amountSent}`;
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown"
+        })
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          showCustomAlert();
+        } else {
+          alert("❌ Order failed to send. Please try again.");
+          console.error(response);
+        }
+      })
+      .catch(error => {
+        console.error("Telegram Error:", error);
+        alert("❌ Network issue. Try again later.");
+      });
+    });
+
+    function showCustomAlert() {
+      document.getElementById('customAlert').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function hideCustomAlert() {
+      document.getElementById('customAlert').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+</body>
+  </html>
