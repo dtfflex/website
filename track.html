@@ -192,14 +192,16 @@ async function trackOrder() {
     return;
   }
 
-  const statusMap = {
-    "accepted": "Accepted",
-    "in transit": "In Transit",
-    "courier": "In Transit",      // fix your 'courier' status
-    "delivered": "Delivered",
-    "ready to collect": "Ready to Collect",
-    "done": "Done"
-  };
+const statusMap = {
+  "accepted": "Accepted",
+  "processing": "Accepted",         // ✅ Add this line
+  "in transit": "In Transit",
+  "courier": "In Transit",
+  "delivered": "Delivered",
+  "ready to collect": "Ready to Collect",
+  "payment": "Ready to Collect",
+  "done": "Done"
+};
 
   try {
     const snapshot = await db.collection("orders").where("orderid", "==", orderId).get();
