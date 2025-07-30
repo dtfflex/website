@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DTFFLEX APP – RULES</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      background-color: #06132B; /* Navy blue */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: 50px;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toolbar-left img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .track-btn {
+      background: white; /* Pink */
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: Poppins;
+    }
+
+    /* Bottom Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #06132B;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+    height: 70px;
+    padding: 8px 0;
+     border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .bottom-nav a i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .bottom-nav a.active {
+    color: white;
+  }
+
+  .bottom-nav a.active i {
+    transform: scale(1.2);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 20%;
+    background: white;
+    transition: left 0.3s ease;
+  }
+
+    .content {
+      padding: 20px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <img src="https://dtfflex.shop/favicon.png" alt="Logo" />
+      <strong>DTFFLEX APP</strong>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="content">
+    <div style="background-color:#ffffff; padding:18px; font-family:'Poppins', sans-serif; border-radius:12px; max-width:360px; margin:auto; box-shadow:0 4px 10px rgba(0,0,0,0.1); line-height:1.7">
+
+  <h3 style="color:#F44336; font-size:18px;">🚫 পণ্যের দাম সম্পর্কে সতর্কতা</h3>
+  <p style="font-size:14px; color:#000000;">
+    আপনি DTFFLEX-এর একজন সম্মানিত মার্চেন্ট। মনে রাখবেন, <strong style="color:#F44336;">প্রোডাক্টের দাম সাজেস্টেড মূল্যের থেকে বেশি বলা যাবে না</strong>। অনেক সময় দেখা যায় কিছু রিসেলার অতি মুনাফার আশায় পণ্যের দাম অতিরিক্ত বলে, ফলে কাস্টমার প্রোডাক্ট হাতে পেয়ে হতাশ হয় এবং পণ্যটি গ্রহণ না করে রিটার্ন করে দেয়। এতে আপনার বিশ্বাসযোগ্যতা ও ব্যবসার ক্ষতি হয়।
+  </p>
+
+  <h3 style="color:#F44336; font-size:16px;">📏 সাইজ চার্ট </h3>
+  <p style="font-size:14px; color:#000000;">
+    আপনি কাস্টমারকে সঠিক সাইজ এবং পরিমাপ জানাতে বাধ্য। নিচে সাইজ চার্ট দেওয়া হলো:
+  </p>
+  <ul style="padding-left:20px; font-size:14px; color:#000000;">
+    <li>S: Chest 40" / Length 27"</li>
+    <li>M: Chest 42" / Length 27.5"</li>
+    <li>L: Chest 44" / Length 28.5"</li>
+    <li>XL: Chest 46" / Length 29.2"</li>
+    <li>2XL: Chest 48" / Length 30.2"</li>
+  </ul>
+
+  <h3 style="color:#F44336; font-size:16px;">🧵 ফেব্রিক ও কোয়ালিটি</h3>
+  <p style="font-size:14px; color:#000000;">
+    আমাদের প্রোডাক্টের মান নিয়ে কোনো আপস নেই। নিচে ফেব্রিক সম্পর্কিত তথ্য দেওয়া হলো:
+  </p>
+  <ul style="padding-left:20px; font-size:14px; color:#000000;">
+    <li>Fabric: 100% Cotton</li>
+    <li>Weight: 220 GSM+</li>
+    <li>Crew Neck</li>
+    <li>Color & Wash Guaranteed</li>
+  </ul>
+
+  <h3 style="color:#F44336; font-size:16px;">🔁 রিটার্ন কমানোর কৌশল</h3>
+  <p style="font-size:14px; color:#000000;">
+    অনলাইন ব্যবসায় <strong>বিশ্বাসই মূল</strong>। তাই সবসময় কাস্টমারকে <strong style="color:#F44336;">সঠিক তথ্য দিন</strong> এবং পণ্যের মান বা দামে বাড়িয়ে বলা থেকে বিরত থাকুন। এতে কাস্টমারের সন্তুষ্টি যেমন বাড়বে, তেমনি <strong>রিটার্ন রেট কমে আসবে</strong>।
+  </p>
+
+  <h3 style="color:#F44336; font-size:16px;">📞 অর্ডার ভেরিফিকেশন গাইড</h3>
+  <p style="font-size:14px; color:#000000;">
+    যিনি আপনার পেজে অর্ডার করবেন, তার সাথে অর্ডার কনফার্ম করার পরে একটি ফোন কলে যাচাই করুন। এরপর <strong>SteadFast Courier App</strong> এ গিয়ে তার মোবাইল নম্বর সার্চ করুন – যদি সে কোনো ফ্রড হয় তা জানা যাবে। সব যাচাই করার পরেই আমাদের DTFFLEX App থেকে অর্ডার কনফার্ম করুন।
+  </p>
+
+  <p style="font-size:13px; color:#757575; margin-top:20px; text-align:center;">💡 সততা, স্বচ্ছতা ও প্রফেশনাল আচরণই একজন সফল মার্চেন্টের মূল চাবিকাঠি</p>
+</div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav" id="bottomNav">
+  <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
+  <a href="price.html"><i class="fas fa-tags"></i>Price</a>
+  <a href="order.html"><i class="fas fa-cart-plus"></i>Order</a>
+  <a href="withdrawal.html"><i class="fas fa-wallet"></i>Withdrawal</a>
+  <a href="profile.html"><i class="fas fa-user"></i>Profile</a>
+  <div class="nav-indicator" id="navIndicator"></div>
+</div>
+
+  
+<script>
+  const path = window.location.pathname;
+  const page = path.split("/").pop();
+
+  const navLinks = document.querySelectorAll(".bottom-nav a");
+  const indicator = document.getElementById("navIndicator");
+
+  navLinks.forEach((link, index) => {
+    // Remove any previous 'active'
+    link.classList.remove("active");
+
+    // Match current page with href
+    if (link.getAttribute("href") === page) {
+      link.classList.add("active");
+
+      // Move the nav indicator
+      const percentage = index * 20; // 5 items = 20% each
+      indicator.style.left = `${percentage}%`;
+    }
+  });
+</script>
+</body>
+</html>

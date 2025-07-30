@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DTFFLEX APP - HOME</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+<meta name="theme-color" content="#0a0a23" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      background-color: #06132B; /* Navy blue */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: 50px;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toolbar-left img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .track-btn {
+      background: white; /* Pink */
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: Poppins;
+    }
+
+    /* Bottom Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #06132B;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+    height: 70px;
+    padding: 8px 0;
+     border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .bottom-nav a i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .bottom-nav a.active {
+    color: white;
+  }
+
+  .bottom-nav a.active i {
+    transform: scale(1.2);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 20%;
+    background: white;
+    transition: left 0.3s ease;
+  }
+
+    .content {
+      padding: 20px;
+      padding-bottom: 80px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <img src="https://dtfflex.shop/favicon.png" alt="Logo" />
+      <strong>DTFFLEX APP</strong>
+    </div>
+    <button class="track-btn" onclick="location.href='track.html'">Track Order</button>
+  </div>
+
+  <!-- Page Content -->
+  <div id="installPrompt" style="display:none;position:fixed;bottom:20px;left:20px;right:20px;background:#fff;padding:15px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:999;">
+  <strong>Install the app for long time use</strong><br>
+  <button id="installBtn" style="margin-top:10px;padding:8px 16px;background:#0a0a23;color:white;border:none;border-radius:5px;">Install</button>
+  <button id="skipBtn" style="margin-top:10px;margin-left:10px;padding:8px 16px;background:#ccc;color:#333;border:none;border-radius:5px;">Skip</button>
+</div>
+<script>
+  let deferredPrompt;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Show prompt after 5 seconds
+    setTimeout(() => {
+      document.getElementById('installPrompt').style.display = 'block';
+    }, 5000);
+  });
+
+  document.getElementById('installBtn').addEventListener('click', () => {
+    document.getElementById('installPrompt').style.display = 'none';
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    }
+  });
+
+  document.getElementById('skipBtn').addEventListener('click', () => {
+    document.getElementById('installPrompt').style.display = 'none';
+  });
+</script>
+  <div class="slider-container">
+  <div class="slider-slide active">
+    <img src="slide1.jpg" alt="Slide 1" />
+  </div>
+  <div class="slider-slide">
+    <img src="slide2.jpg" alt="Slide 2" />
+  </div>
+  <div class="slider-slide">
+    <img src="Slide3.jpg" alt="Slide 3" />
+  </div>
+</div>
+  <div>
+    <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      max-width: 600px;
+      margin: 40px auto;
+      margin-left: 10px;
+      margin-right:10px;
+    }
+
+    .box {
+      height: 100px;
+      background-color: #06132B;
+      border-radius: 6px;
+      margin-left:5px;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+    .boxin{
+      color:white;
+      font-size: 15px;
+      text-align: center;
+      margin-bottom: -50px;
+      text-decoration: none;
+    }
+    #boxin{
+    color:white;
+    font-size: 45px;
+    margin-top: 15px;
+    margin-left: 25px;
+    text-decoration: none;
+    justify-content: center;
+    }
+    .profitbox{
+      background-color: #06132B ;
+      height: 60px;
+      width: 310px;
+      text-align: center;
+      color:white;
+      margin-left: 25px;
+      border-radius: 12px;
+      margin-top: -20px;
+    }
+  </style>
+  <div class="grid-container">
+    <a href="start.html" style="text-decoration:none;"><div class="box">
+      <i class="fas fa-plus-circle" id="boxin"></i>
+      <p class="boxin">Start?</p>
+    </div>
+    <a href="rules.html" style="text-decoration:none;"><div class="box">
+      <i class="fas fa-exclamation-circle" id="boxin"></i>
+      <p class="boxin">Rules</p>
+    </div>
+    <a href="https://youtube.com/playlist?list=PLCZCH_ogwaN23BPTluC1orhp5OoVoCaIy&si=MuWBvjSKfgbWrjQ7" style="text-decoration:none;"><div class="box">
+      <i class="fa-solid fa-circle-play"id="boxin"></i>
+      <p class="boxin">Tutorial</p>
+    </div>
+    <a href="question.html" style="text-decoration:none;"><div class="box">
+      <i class="fas fa-question-circle"id="boxin"></i>
+      <p class="boxin">Question</p>
+    </div>
+    <a href="https://youtube.com/playlist?list=PLCZCH_ogwaN3im_5YiLxxG21GbUJueI4P&si=HVG0aKayJaVVK-PY" style="text-decoration:none;"><div class="box">
+      <i class="fas fa-book" id="boxin"></i>
+      <p class="boxin">Guideline</p>
+    </div>
+    <a href="tel:+8801706441482" style="text-decoration:none;"><div class="box">
+     <i class="fas fa-phone" id="boxin"></i>
+     <p class="boxin">Call</p>
+    </div></a>
+  </div>
+  </div>
+  <a href="profitcal.html" style="text-decoration:none;"><div class="profitbox">
+  <!-- Image on left -->
+  <div class="logo">
+    <img src="transparentlogo.png" alt="Logo" />
+  </div>
+
+  <!-- Text and Arrow -->
+  <div class="pp">
+    Profit Calculation <i class="fas fa-arrow-right"></i>
+  </div>
+</div></a>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<style>
+  .profitbox {
+    background-color: #06132B;
+    height: 60px;
+    width: 310px;
+    color: white;
+    margin-left: 25px;
+    border-radius: 12px;
+    margin-top: -20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+  }
+
+  .pp {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pp i {
+    color: white;
+  }
+</style>
+      </div>
+  <!--Style-->
+<style>
+  .slider-container {
+    width: 320px;  /* আপনার প্রয়োজন মতো দিন */
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .slider-slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .slider-slide.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .slider-slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll('.slider-slide');
+  let current = 0;
+
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  // Auto slide every 3 seconds
+  setInterval(nextSlide, 3000);
+</script>
+
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav" id="bottomNav">
+  <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
+  <a href="price.html"><i class="fas fa-tags"></i>Price</a>
+  <a href="order.html"><i class="fas fa-cart-plus"></i>Order</a>
+  <a href="withdrawal.html"><i class="fas fa-wallet"></i>Withdrawal</a>
+  <a href="profile.html"><i class="fas fa-user"></i>Profle</a>
+  <div class="nav-indicator" id="navIndicator"></div>
+</div>
+
+<script>
+  const path = window.location.pathname;
+  const page = path.split("/").pop();
+
+  const navLinks = document.querySelectorAll(".bottom-nav a");
+  const indicator = document.getElementById("navIndicator");
+
+  navLinks.forEach((link, index) => {
+    // Remove any previous 'active'
+    link.classList.remove("active");
+
+    // Match current page with href
+    if (link.getAttribute("href") === page) {
+      link.classList.add("active");
+
+      // Move the nav indicator
+      const percentage = index * 20; // 5 items = 20% each
+      indicator.style.left = `${percentage}%`;
+    }
+  });
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js');
+    });
+  }
+</script>
+</body>
+</html>

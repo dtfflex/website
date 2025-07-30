@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DTFFLEX APP – QUESTIONS</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      background-color: #06132B; /* Navy blue */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: 50px;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toolbar-left img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .track-btn {
+      background: white; /* Pink */
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: Poppins;
+    }
+
+    /* Bottom Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #06132B;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+    height: 70px;
+    padding: 8px 0;
+     border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .bottom-nav a i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .bottom-nav a.active {
+    color: white;
+  }
+
+  .bottom-nav a.active i {
+    transform: scale(1.2);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 20%;
+    background: white;
+    transition: left 0.3s ease;
+  }
+
+    .content {
+      padding: 20px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <img src="https://dtfflex.shop/favicon.png" alt="Logo" />
+      <strong>DTFFLEX APP</strong>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="content">
+    <div class="faq-section">
+  <h2 class="faq-title">🧾 DTFFLEX - সাধারণ প্রশ্ন ও উত্তর</h2>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq1">
+    <label for="faq1">❓ অর্ডার দিলেভারি হতে কতদিন লাগে?</label>
+    <div class="faq-content">
+      এটি একটি কাস্টম প্রিন্ট সার্ভিস, যেখানে অর্ডার প্রসেস করতে ২–৩ দিন সময় লাগে। এরপর কুরিয়ার সার্ভিসের মাধ্যমে ২–৫ দিনের মধ্যে কাস্টমার অর্ডার পেয়ে যাবে।
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq2">
+    <label for="faq2">❓ আমার বিজনেস অনেক ছোট, আমি কি কাজ করতে পারব?</label>
+    <div class="faq-content">
+      অবশ্যই পারবেন! DTFFLEX মূলত ছোট উদ্যোক্তাদের জন্যই তৈরি – কোনো ইনভেস্ট ছাড়াই আপনি নিজের ডিজাইন ও ব্র্যান্ড নিয়ে কাজ শুরু করতে পারবেন।
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq3">
+    <label for="faq3">❓ প্রফিটের টাকা কিভাবে ও কতদিনে পাওয়া যাবে?</label>
+    <div class="faq-content">
+      প্রোডাক্ট সফলভাবে ডেলিভারি হলে "Ready to Collect" স্ট্যাটাসে গিয়ে আপনি পেমেন্ট রিকোয়েস্ট করতে পারবেন। সর্বোচ্চ ১২ ঘণ্টার মধ্যে টাকা আপনার বিকাশ/নগদে চলে যাবে।
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq4">
+    <label for="faq4">❓ এক কাস্টমারের একাধিক প্রোডাক্ট কি একসাথে পাঠানো যাবে?</label>
+    <div class="faq-content">
+      হ্যাঁ, কোয়ান্টিটি ২ বা ৩ দিয়ে অর্ডার করুন এবং ডিজাইন ফাইল ও সাইজ উল্লেখ করুন। আমরা যাচাই করে কাস্টমারকে ফোন দিয়ে নিশ্চিত করব।
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq5">
+    <label for="faq5">❓ কিছু বুঝতে না পারলে যোগাযোগ করবো কীভাবে?</label>
+    <div class="faq-content">
+      DTFFLEX অ্যাপে থাকা "Call" অপশনে ক্লিক করলেই নাম্বার ওপেন হবে, সেখান থেকে সরাসরি কল করতে পারবেন আমাদের টিমকে।
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq6">
+    <label for="faq6">❓ কাস্টমার রিটার্ন করলে আমি কীভাবে প্রোডাক্ট রিসিভ করব?</label>
+    <div class="faq-content">
+      কাস্টমার রিটার্ন করলে DTFFLEX আপনাকে জানাবে এবং প্রোডাক্টটি আপনার লোকেশনে পাঠানো হবে। আপনি ডেলিভারি খরচ দিয়ে সেটি গ্রহণ করতে পারবেন।
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <input type="checkbox" id="faq8">
+    <label for="faq8">❓ প্রিন্ট কোয়ালিটি কেমন?</label>
+    <div class="faq-content">
+      আমরা A-grade DTF প্রিন্টিং ব্যবহার করি যা ওয়াশপ্রুফ এবং ফ্যাব্রিকে সুন্দরভাবে বসে। আপনি নিজে চেক করে সন্তুষ্ট হতে পারেন, প্রয়োজনে স্যাম্পল অর্ডার দিন।
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .faq-section {
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: 'Poppins', sans-serif;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  .faq-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #06132B;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  .faq-item label {
+    display: block;
+    padding: 15px;
+    cursor: pointer;
+    background: #06132B;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+
+  .faq-item label:hover {
+    background: #0c2346;
+  }
+
+  .faq-item input {
+    display: none;
+  }
+
+  .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #fff;
+    color: #333;
+    padding: 0 15px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .faq-item input:checked ~ .faq-content {
+    max-height: 300px;
+    padding: 15px;
+  }
+</style>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav" id="bottomNav">
+  <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
+  <a href="price.html"><i class="fas fa-tags"></i>Price</a>
+  <a href="order.html"><i class="fas fa-cart-plus"></i>Order</a>
+  <a href="withdrawal.html"><i class="fas fa-wallet"></i>Withdrawal</a>
+  <a href="profile.html"><i class="fas fa-user"></i>Profile</a>
+  <div class="nav-indicator" id="navIndicator"></div>
+</div>
+
+  
+<script>
+  const path = window.location.pathname;
+  const page = path.split("/").pop();
+
+  const navLinks = document.querySelectorAll(".bottom-nav a");
+  const indicator = document.getElementById("navIndicator");
+
+  navLinks.forEach((link, index) => {
+    // Remove any previous 'active'
+    link.classList.remove("active");
+
+    // Match current page with href
+    if (link.getAttribute("href") === page) {
+      link.classList.add("active");
+
+      // Move the nav indicator
+      const percentage = index * 20; // 5 items = 20% each
+      indicator.style.left = `${percentage}%`;
+    }
+  });
+</script>
+</body>
+</html>

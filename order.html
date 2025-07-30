@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DTFFLEX APP - ORDER</title>
+<link rel="icon" type="image/png" href="favicon.png">
+  <meta name="description" content="Place your DTF print order easily with DTFFLEX. Upload designs, choose product types, and enjoy fast, affordable dropshipping in Bangladesh.">
+  
+  <meta name="keywords" content="DTFFLEX order, dtf print order, dtf dropshipping BD, print on demand Bangladesh, dtf custom design, t-shirt print order, dtf print service BD">
+
+  <meta name="author" content="DTFFLEX">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="Place Your Order – DTFFLEX APP">
+  <meta property="og:description" content="Submit your DTF print order now with DTFFLEX. Upload your artwork, select product details, and start reselling fast.">
+  <meta property="og:image" content="https://dtfflex.shop/favicon.png">
+  <meta property="og:url" content="https://dtfflex.shop/order.html">
+  <meta property="og:type" content="website">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      background-color: #06132B; /* Navy blue */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: 50px;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toolbar-left img {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .track-btn {
+      background: white; /* Pink */
+      color: black;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: Poppins;
+    }
+
+    /* Bottom Nav */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #06132B;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    z-index: 100;
+    height: 70px;
+    padding: 8px 0;
+     border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+  }
+
+  .bottom-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .bottom-nav a i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .bottom-nav a.active {
+    color: white;
+  }
+
+  .bottom-nav a.active i {
+    transform: scale(1.2);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 20%;
+    background: white;
+    transition: left 0.3s ease;
+  }
+
+    .content {
+      padding: 20px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <img src="https://dtfflex.shop/favicon.png" alt="Logo" />
+      <strong>DTFFLEX APP</strong>
+    </div>
+    <button class="track-btn" onclick="location.href='track.html'">Track Order</button>
+  </div>
+
+  <!-- Page Content -->
+  <div class="content">
+    <div style="background-color: #ff4d4d; color: white; padding: 0px; border-radius: 10px; font-family: 'Poppins', sans-serif; margin: 0px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1); height:60px;">
+  <p style="margin-top: 0;">💡 Suggested Retail Prices</p>
+  <p style="margin-top:-20px;">Dropshoulder: 550–650৳</p>
+  <p style="margin-top:-20px;">Regular T-shirt: 450–550৳
+  </p>
+</div>
+<div style="width: 100%; max-width: 100%; height: 100vh; border: none; overflow: hidden;">
+  <iframe 
+    src="https://dtfflex.github.io/appmanager/orderfromapp" 
+    width="100%" 
+    height="100%" 
+    style="border: none;"
+    title="DTFFLEX Order Form"
+    loading="lazy"
+    allowfullscreen>
+  </iframe>
+</div>
+<!-- Messenger Button Container -->
+<div id="messengerButton" style="display: none; text-align: center; margin-top: 20px;">
+  <div onclick="window.open('https://m.me/61577311430634?text=Hi%20New%20Order%20Merchant%20Name:%20%20Delivered%20To:%20%20Here%20Is%20The%20Design', '_blank')" 
+       style="display: inline-block; padding: 12px 24px; background-color: #06132B; color: white; font-family: 'Poppins', sans-serif; font-size: 16px; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s ease; margin-bottom:50px;">
+    📩 Send Your Design via Messenger
+  </div>
+</div>
+
+<!-- Script to show after 5 seconds -->
+<script>
+  setTimeout(function() {
+    document.getElementById("messengerButton").style.display = "block";
+  }, 5000); // 5000ms = 5 seconds
+</script>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav" id="bottomNav">
+  <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
+  <a href="price.html"><i class="fas fa-tags"></i>Price</a>
+  <a href="order.html"><i class="fas fa-cart-plus"></i>Order</a>
+  <a href="withdrawal.html"><i class="fas fa-wallet"></i>Withdrawal</a>
+  <a href="profile.html"><i class="fas fa-user"></i>Profile</a>
+  <div class="nav-indicator" id="navIndicator"></div>
+</div>
+
+  
+<script>
+  const path = window.location.pathname;
+  const page = path.split("/").pop();
+
+  const navLinks = document.querySelectorAll(".bottom-nav a");
+  const indicator = document.getElementById("navIndicator");
+
+  navLinks.forEach((link, index) => {
+    // Remove any previous 'active'
+    link.classList.remove("active");
+
+    // Match current page with href
+    if (link.getAttribute("href") === page) {
+      link.classList.add("active");
+
+      // Move the nav indicator
+      const percentage = index * 20; // 5 items = 20% each
+      indicator.style.left = `${percentage}%`;
+    }
+  });
+</script>
+</body>
+</html>
