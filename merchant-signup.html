@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta Information for Signup Page -->
+<title>Join as a Merchant – Start Selling with Confidence</title>
+<meta name="description" content="Become a verified DTFFLEX merchant today. Get access to premium print services, fast delivery, and real-time order tracking. No upfront cost – only pay per order. Grow your t-shirt or apparel business with full backend support.">
+<meta name="keywords" content="Merchant Signup, DTFFLEX Merchant, Start Dropshipping, T-shirt Printing Bangladesh, DTF Business Partner, Apparel Reseller, DTG Printing Signup, Online Business Bangladesh, Custom Print Order, Join as a Seller, DTF Partner Registration">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+    }
+
+    .wrapper {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP6oJAB0SCbh-2Zjds6la5KNqOjonUEPZ06NvxjPeFubC0wV6xfSPfjg71&s=10') no-repeat center center fixed;
+      background-size: cover;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .signup-container {
+      background-color: rgba(255, 255, 255, 0.7); /* 70% transparent */
+      width: 100%;
+      max-width: 400px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      color: black;
+    }
+
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid black;
+      border-radius: 8px;
+      font-size: 15px;
+      color: black;
+      font-family: Poppins;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #06132B;
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: Poppins;
+    }
+
+    button:hover {
+      background-color: #06132B;
+    }
+
+    .success-message {
+      text-align: center;
+      margin-top: 15px;
+      color: #black;
+      font-weight: 500;
+    }
+
+    @media screen and (max-width: 500px) {
+      .signup-container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="signup-container">
+    <h2>Merchant Signup</h2>
+    <form id="signupForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <input type="text" id="business" placeholder="Business Name" required />
+      <button type="submit">Signup</button>
+      <div class="success-message" id="successMsg"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const telegramBotToken = '7681391311:AAFHkC0yIodefhvM8fTZ-lD5EtNwwTJHJOs'; // Replace with your Telegram Bot token
+  const telegramChatId = '7992860091';     // Replace with your Telegram Chat ID
+
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const business = document.getElementById("business").value.trim();
+
+    const message = `
+📦 *New Merchant Signup*:
+👤 Name: ${name}
+📧 Email: ${email}
+📱 Phone: ${phone}
+🏢 Business: ${business}
+    `;
+
+    const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: telegramChatId,
+        text: message,
+        parse_mode: "Markdown"
+      })
+    }).then(res => {
+      document.getElementById('successMsg').innerText = "✅ Signup Submitted! We Will Contract You And Give Your Merchant Code Soon.";
+      document.getElementById('signupForm').reset();
+    }).catch(err => {
+      alert("❌ Error sending to Telegram");
+      console.error(err);
+    });
+  });
+</script>
+</body>
+</html>
