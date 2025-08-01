@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DTFFLEX | Desktop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f1f1f1;
+      color: #06132B;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #06132B;
+      min-height: 100vh;
+      padding: 30px 20px;
+      color: white;
+      position: fixed;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 40px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      color: #00D4FF;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+      padding: 0;
+    }
+
+    header {
+      background-color: #06132B;
+      color: white;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .banner {
+      background-color: #122b55;
+      color: white;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .banner h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background-color: #06132B;
+      color: white;
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card i {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+    }
+
+    .profit-box {
+      background-color: #06132B;
+      color: white;
+      border-radius: 14px;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 40px;
+      font-size: 18px;
+    }
+
+    .profit-box i {
+      font-size: 20px;
+    }
+
+    footer {
+      background: #06132B;
+      color: white;
+      padding: 30px 50px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    @media screen and (max-width: 991px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>DTFFLEX</h2>
+    <ul>
+      <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+      <li><a href="order.html"><i class="fas fa-box"></i>Order Now</a></li>
+      <li><a href="profile.html"><i class="fas fa-user"></i>Profile</a></li>
+      <li><a href="price.html"><i class="fas fa-chart-line"></i>Prices</a></li>
+      <li><a href="withdrawal.html"><i class="fas fa-wallet"></i>Withdrawal</a></li>
+      <li><a href="https://m.me/61577311430634?text=Assalamualaikum"><i class="fas fa-question-circle"></i>Help</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <header>
+      <h1>DTFFLEX APP</h1>
+      <nav>
+        <ul>
+          <li><a href="track.html">Track Order</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="merchant-signup.html">Join</a></li>
+          
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+     <!-- SLIDER DIV START -->
+<div class="slider-container">
+  <div class="slider-slide active">
+    <img src="slide1.jpg" alt="Slide 1" />
+  </div>
+  <div class="slider-slide">
+    <img src="slide2.jpg" alt="Slide 2" />
+  </div>
+  <div class="slider-slide">
+    <img src="Slide3.jpg" alt="Slide 3" />
+  </div>
+</div>
+
+<style>
+  .slider-container {
+    width: 720px;
+    height: 360px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin: 40px auto;
+  }
+
+  .slider-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .slider-slide.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .slider-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  a{
+    color: white;
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll(".slider-slide");
+  let current = 0;
+
+  function nextSlide() {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }
+
+  setInterval(nextSlide, 3000);
+</script>
+<!-- SLIDER DIV END -->
+      <div class="banner">
+        <h2>THE BEST PRINT ON DEMAND DROPSHIPPING PLATFORM IN BANGLADESH</h2>
+        <p>DTFFLEX</p>
+      </div>
+
+      <div class="card-grid">
+        <a href="start.html">
+          <div class="card">
+          <i class="fas fa-plus-circle"></i>
+          <h3>Start?</h3>
+        </div>
+        </a>
+      
+        <a href="rules.html">
+          <div class="card">
+          <i class="fas fa-exclamation-circle"></i>
+          <h3>Rules</h3>
+        </div>
+        </a>
+        
+        <a href="https://youtube.com/playlist?list=PLCZCH_ogwaN23BPTluC1orhp5OoVoCaIy&si=MuWBvjSKfgbWrjQ7">
+        <div class="card">
+          <i class="fas fa-play-circle"></i>
+          <h3>Tutorial</h3>
+        </div>
+        </a>
+        
+        <a href="question.html">
+        <div class="card">
+          <i class="fas fa-question-circle"></i>
+          <h3>Question</h3>
+        </div>
+        </a>
+        
+        <a href="https://youtube.com/playlist?list=PLCZCH_ogwaN3im_5YiLxxG21GbUJueI4P&si=HVG0aKayJaVVK-PY">
+        <div class="card">
+          <i class="fas fa-book"></i>
+          <h3>Guideline</h3>
+        </div>
+        </a>
+        
+        <a href="tel:+8801706441482">
+        <div class="card">
+          <i class="fas fa-phone"></i>
+          <h3>Call</h3>
+        </div>
+        </a>
+      </div>
+
+      <a href="profitcal.html">
+      <div class="profit-box">
+        <span><strong>DTFFLEX</strong> Profit Calculation</span>
+        <i class="fas fa-arrow-right"></i>
+      </div>
+      </a>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 DTFFLEX. All rights reserved.</p>
+    </footer>
+  </div>
+<script>
+  function checkAndRedirect() {
+    const isMobileViewport = window.innerWidth <= 768; // mobile breakpoint
+
+    // If viewport is mobile size AND NOT already on mobile homepage, redirect there (assuming index.html)
+    if (isMobileViewport && !window.location.href.endsWith("home.html") && !window.location.pathname.endsWith("/")) {
+      // Adjust the mobile homepage filename/path if different
+      window.location.href = "home.html"; 
+    }
+  }
+
+  window.addEventListener("load", checkAndRedirect);
+  window.addEventListener("resize", checkAndRedirect);
+</script>
+</body>
+</html>
