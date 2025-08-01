@@ -161,6 +161,19 @@
     document.getElementById('installPrompt').style.display = 'none';
   });
 </script>
+  <script>
+  function checkAndRedirect() {
+    const isDesktopViewport = window.innerWidth > 768; // desktop breakpoint
+
+    // If viewport is desktop size AND NOT already on desktop-home.html, redirect to desktop-home.html
+    if (isDesktopViewport && !window.location.href.includes("desktop-home.html")) {
+      window.location.href = "desktop-home.html";
+    }
+  }
+
+  window.addEventListener("load", checkAndRedirect);
+  window.addEventListener("resize", checkAndRedirect);
+  </script>
   <div class="slider-container">
   <div class="slider-slide active">
     <img src="slide1.jpg" alt="Slide 1" />
