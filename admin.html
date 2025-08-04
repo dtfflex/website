@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DTFFLEX Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #f5f7fa;
+      color: #06132B;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #06132B;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 15px;
+      position: fixed;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    .sidebar h2 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 2px;
+      color: #E91E63;
+    }
+    .sidebar nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar nav a:hover {
+      background-color: #E91E63;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 250px;
+      flex: 1;
+      padding: 30px 25px;
+      width: 100%;
+    }
+
+    header {
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #06132B;
+      margin-bottom: 6px;
+    }
+    header p {
+      color: #555;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      width: 250px;
+      text-align: center;
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .card input {
+      font-size: 24px;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      transition: border-color 0.3s ease;
+    }
+    .card input:focus {
+      outline: none;
+      border-bottom: 2px solid #06132B;
+    }
+
+    canvas {
+      max-width: 600px;
+      width: 100%;
+      margin: 30px auto;
+      display: block;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .buttons a {
+      background: #E91E63;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .buttons a:hover {
+      background: #C2185B;
+    }
+
+    /* Login screen */
+    .login-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      background: #f5f7fa;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .login-box input {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .login-box button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background: #06132B;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Hide dashboard and login initially */
+    #login, #dashboard {
+      display: none;
+      flex-direction: column;
+    }
+    #login.active, #dashboard.active {
+      display: flex;
+    }
+
+    /* Responsive sidebar toggle */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        transform: translateX(-260px);
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 15px 20px;
+      }
+      .toggle-btn {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: #06132B;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        z-index: 1100;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div class="login-screen active" id="login">
+    <div class="login-box">
+      <h2>DTFFLEX Admin Login</h2>
+      <input type="email" id="username" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button onclick="checkLogin()">Login</button>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar" aria-label="Sidebar navigation">
+    <h2>DTFFLEX</h2>
+    <nav>
+      <a href="#" onclick="showDashboard()">Dashboard</a>
+      <a href="https://dtfflex.github.io/appmanager/tanbiristheownerofdtfflex" target="_blank" rel="noopener">Orders</a>
+      <a href="https://dtfflex.github.io/appmanager/merchant-admin" target="_blank" rel="noopener">Merchants</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="dashboard">
+    <button class="toggle-btn" id="toggleBtn" aria-label="Toggle sidebar">&#9776;</button>
+    <header>
+      <h1>Welcome back, Admin!</h1>
+      <p>Ready to manage your empire?</p>
+    </header>
+
+    <div class="summary">
+      <div class="card">
+        <h3>Total Orders</h3>
+        <input id="totalOrders" type="number" value="13" aria-label="Total Orders" min="0" />
+      </div>
+      <div class="card">
+        <h3>Total Income (৳)</h3>
+        <input id="totalIncome" type="number" value="9000" aria-label="Total Income" min="0" />
+        </div>
+      <div class="card">
+  <h3>Total Merchants</h3>
+  <input type="number" value="5" aria-label="Total Merchants" min="0" />
+</div>
+      
+    </div>
+
+    <canvas id="ordersChart" aria-label="Orders per day chart"></canvas>
+
+    <div class="buttons">
+      <a href="https://dtfflex.github.io/appmanager/tanbiristheownerofdtfflex" target="_blank" rel="noopener">➕ Add/Edit Orders</a>
+      <a href="https://dtfflex.github.io/appmanager/merchant-admin" target="_blank" rel="noopener">🛍️ Add/Edit Merchant</a>
+    </div>
+  </div>
+
+  <script>
+    // Sidebar toggle for mobile
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Load saved data from localStorage or default values
+    function loadData() {
+      const savedOrders = localStorage.getItem('dtfflex_totalOrders');
+      const savedIncome = localStorage.getItem('dtfflex_totalIncome');
+      if (savedOrders !== null) document.getElementById('totalOrders').value = savedOrders;
+      if (savedIncome !== null) document.getElementById('totalIncome').value = savedIncome;
+    }
+
+    // Save data to localStorage
+    function saveData() {
+      const orders = document.getElementById('totalOrders').value;
+      const income = document.getElementById('totalIncome').value;
+      localStorage.setItem('dtfflex_totalOrders', orders);
+      localStorage.setItem('dtfflex_totalIncome', income);
+    }
+
+    // Update chart data based on total orders input
+    let chartInstance = null;
+    function updateChart() {
+      const totalOrders = parseInt(document.getElementById('totalOrders').value) || 0;
+
+      // Example: distribute orders roughly evenly across the week
+      const base = Math.floor(totalOrders / 7);
+      const remainder = totalOrders % 7;
+      const data = Array(7).fill(base);
+      for (let i = 0; i < remainder; i++) {
+        data[i]++;
+      }
+
+      if (chartInstance) {
+        chartInstance.data.datasets[0].data = data;
+        chartInstance.update();
+      }
+    }
+
+    // Show dashboard content and hide login on success
+    function checkLogin() {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if (u === 'owner@dtfflex.shop' && p === '@Tanbir4') {
+        document.getElementById('login').classList.remove('active');
+        document.getElementById('dashboard').classList.add('active');
+        loadData();
+        createChart();
+      } else {
+        alert('Wrong credentials!');
+      }
+    }
+
+    // Show dashboard (when clicking sidebar links)
+    function showDashboard() {
+      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Logout function
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        document.getElementById('dashboard').classList.remove('active');
+        document.getElementById('login').classList.add('active');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        if (chartInstance) {
+          chartInstance.destroy();
+          chartInstance = null;
+        }
+      }
+    }
+
+    // Create chart instance
+    function createChart() {
+      const ctx = document.getElementById('ordersChart').getContext('2d');
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [{
+            label: 'Orders per Day',
+            data: [],
+            borderColor: '#06132B',
+            backgroundColor: 'rgba(6,19,43,0.1)',
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: true } }
+        }
+      });
+      updateChart();
+    }
+
+    // Update and save on input change
+    document.getElementById('totalOrders').addEventListener('input', () => {
+      updateChart();
+      saveData();
+    });
+    document.getElementById('totalIncome').addEventListener('input', saveData);
+  </script>
+</body>
+</html>
