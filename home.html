@@ -10,6 +10,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <style>
+   .drawer::-webkit-scrollbar {
+  width: 6px;
+}
+.drawer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -115,17 +122,50 @@
   </style>
 </head>
 <body>
-
+<div id="drawerOverlay" class="drawer-overlay"></div>
+<div id="drawer" class="drawer">
+  <div class="drawer-header">
+    <h2>DTFFLEX</h2>
+    <i class="fas fa-times" id="drawerClose"></i>
+  </div>
+  <a href="home.html"><i class="fas fa-home"></i> Home</a>
+  <a href="https://www.facebook.com/profile.php?id=61577311430634"><i class="fas fa-newspaper"></i> Posts</a>
+  <a href="order.html"><i class="fas fa-cart-plus"></i> Order</a>
+  <a href="withdrawal.html"><i class="fas fa-wallet"></i> Withdrawal</a>
+  <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+  <a href="profitcal.html"><i class="fas fa-chart-line"></i> Profit Calculation</a>
+  <p style="margin-left:10px;">Help And Legal</p>
+  <a href="https://m.me/61577311430634?text=Assalamualaikum"><i class="fas fa-comment"></i> Support</a>
+  <a href="terms.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+  <p style="margin-left:10px;">Socials</p>
+    <a href="https://www.facebook.com/profile.php?id=61577311430634"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://www.instagram.com/dtfflex_bd?igsh=eHp3cmlqcWZwNzU2"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://youtube.com/@dtfflex?si=X8I4Ssa0mnVh9PJo"><i class="fab fa-youtube"></i> Youtube</a>
+  <div style="background-color: rgba(0, 0, 0, 0.4); padding: 20px; margin: 20px 15px; border-radius: 12px; text-align: center; margin-bottom:10px;">
+  <a href="https://t.me/+cBC3fZglcbo1ODE1" target="_blank" style="display: inline-block; background-color: #0088cc; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 10px;">
+    🔗 Join Telegram
+  </a>
+  <div style="margin-top: 12px; font-size: 14px; color: #eee; line-height: 1.5;">
+    <strong style="font-size: 16px;">Tanbir Rohoman</strong><br>
+    Founder & CEO<br>
+    <span style="color: #fff;">DTFFLEX</span><br>
+    <small style="opacity: 0.8;">EST. ©21/06/2025</small>
+  </div>
+</div>
+        
+</div>
   <!-- Toolbar -->
   <div class="toolbar">
     <div class="toolbar-left">
-      <img src="https://dtfflex.shop/favicon.png" alt="Logo" />
+      <i class="fas fa-bars" id="menuToggle" style="font-size: 22px; cursor: pointer;"></i>
+<img src="https://dtfflex.shop/favicon.png" alt="Logo" style="margin-left:10px;" />
       <strong>DTFFLEX APP</strong>
     </div>
     <button class="track-btn" onclick="location.href='track.html'">Track Order</button>
   </div>
 
   <!-- Page Content -->
+  <div class="scroll-container">
   <div id="installPrompt" style="display:none;position:fixed;bottom:20px;left:20px;right:20px;background:#fff;padding:15px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:999;">
   <strong>Install the app for long time use</strong><br>
   <button id="installBtn" style="margin-top:10px;padding:8px 16px;background:#0a0a23;color:white;border:none;border-radius:5px;">Install</button>
@@ -187,6 +227,73 @@
 </div>
   <div>
     <style>
+    .drawer {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background-color: #06132B;
+  color: white;
+  z-index: 999;
+  padding-top: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  transition: left 0.3s ease;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+ 
+  overflow-y:auto;
+  scroll-behavior: smooth;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.drawer-header h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.drawer-header i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.drawer a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.drawer a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(6, 19, 43, 0.7); /* Blue translucent */
+  z-index: 998;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+.drawer-overlay.active {
+  display: block;
+}
+.drawer.open {
+  left: 0;
+}
     .grid-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -259,7 +366,8 @@
     </div></a>
   </div>
   </div>
-  <a href="profitcal.html" style="text-decoration:none;"><div class="profitbox">
+  <a href="profitcal.html" style="text-decoration:none;">
+    <div class="profitbox">
   <!-- Image on left -->
   <div class="logo">
     <img src="transparentlogo.png" alt="Logo" />
@@ -273,7 +381,7 @@
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
+</div>
 <style>
   .profitbox {
     background-color: #06132B;
@@ -283,7 +391,6 @@
     margin-left: 25px;
     border-radius: 12px;
     margin-top: -20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -307,8 +414,22 @@
   .pp i {
     color: white;
   }
+  
+  @media (min-width: 08px) {
+  .profitbox {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+  }
+}
+.scroll-container {
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  padding-bottom: 20px; /* optional, for bottom spacing */
+}
 </style>
-      </div>
   <!--Style-->
 <style>
   .slider-container {
@@ -341,7 +462,45 @@
     border-radius: 12px;
     object-fit: cover;
   }
-</style>
+</style><script>
+  const drawer = document.getElementById("drawer");
+  const overlay = document.getElementById("drawerOverlay");
+  const menuToggle = document.getElementById("menuToggle");
+  const drawerClose = document.getElementById("drawerClose");
+
+  function openDrawer() {
+    drawer.classList.add("open");
+    overlay.classList.add("active");
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    overlay.classList.remove("active");
+  }
+
+  menuToggle.addEventListener("click", openDrawer);
+  drawerClose.addEventListener("click", closeDrawer);
+  overlay.addEventListener("click", closeDrawer);
+
+  // Swipe logic
+  let touchStartX = 0;
+
+  document.addEventListener("touchstart", function (e) {
+    touchStartX = e.touches[0].clientX;
+  });
+
+  document.addEventListener("touchend", function (e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaX = touchEndX - touchStartX;
+
+    if (deltaX > 80 && !drawer.classList.contains("open")) {
+      openDrawer(); // Right swipe to open
+    }
+    if (deltaX < -80 && drawer.classList.contains("open")) {
+      closeDrawer(); // Left swipe to close
+    }
+  });
+</script>
 
 <script>
   const slides = document.querySelectorAll('.slider-slide');
@@ -357,7 +516,7 @@
   setInterval(nextSlide, 3000);
 </script>
 
-
+</div>
   <!-- Bottom Navigation -->
   <div class="bottom-nav" id="bottomNav">
   <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
@@ -397,4 +556,4 @@
   }
 </script>
 </body>
-</html>
+    </html>
