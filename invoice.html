@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Invoice Generator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f9fafc;
+    padding: 20px;
+    color: #06132B;
+  }
+
+  h1 {
+    color: #06132B;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgb(239 71 111 / 0.15);
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], input[type="tel"], input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1.8px solid #ddd;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+  input[type="text"]:focus, input[type="tel"]:focus, input[type="number"]:focus {
+    border-color: #ef476f;
+    outline: none;
+  }
+
+  button {
+    background: #06132B;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+  }
+  button:hover {
+    background: #d93a60;
+  }
+
+  .products-inputs {
+    margin-top: 20px;
+    border-top: 2px solid #ef476f;
+    padding-top: 20px;
+  }
+
+  .product-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .product-row input {
+    flex: 1;
+  }
+  .product-row input.size-input {
+    max-width: 100px;
+  }
+  .product-row input.price-input {
+    max-width: 120px;
+  }
+
+  #addProductBtn {
+    background: #06d6a0;
+    margin-top: 10px;
+  }
+  #addProductBtn:hover {
+    background: #05b886;
+  }
+
+  /* Invoice styling */
+  #invoice {
+    margin-top: 40px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 50px;
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.08);
+    color: #06132B;
+    width: 1240px; /* A4 width at 150 dpi */
+    min-height: 1754px; /* A4 height at 150 dpi */
+    box-sizing: border-box;
+  }
+
+  #invoice header {
+    border-bottom: 3px solid #06132B;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+  #invoice header h2 {
+    font-weight: 700;
+    font-size: 28px;
+    color: #06132B;
+  }
+  #invoice .info-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  #invoice .info-box {
+    width: 48%;
+    margin-bottom: 20px;
+  }
+  #invoice .info-box h3 {
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #06132B;
+  }
+  #invoice table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  #invoice table th, #invoice table td {
+    padding: 8px 6px;
+    text-align: left;
+  }
+  #invoice table thead tr {
+    background: #06132B;
+    color: white;
+    font-weight: 700;
+  }
+  #invoice table tbody tr:nth-child(even) {
+    background: white;
+  }
+  #invoice tfoot tr {
+    background: white;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  #invoice .cod-row {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  #invoice .signature {
+    margin-top: 100px;
+    text-align: right;
+    font-family: 'Dancing Script', cursive;
+    font-size: 26px;
+    color: #06132B;
+  }
+</style>
+<!-- Dancing Script font for signature -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <h1>Invoice Generator</h1>
+
+  <label for="businessName">Business Name</label>
+  <input type="text" id="businessName" placeholder="Your Business Name" />
+
+  <label for="customerName">Customer Name</label>
+  <input type="text" id="customerName" placeholder="Customer's Full Name" />
+
+  <label for="customerAddress">Customer Address</label>
+  <input type="text" id="customerAddress" placeholder="Customer's Address" />
+
+  <label for="customerPhone">Customer Phone</label>
+  <input type="tel" id="customerPhone" placeholder="Customer's Phone Number" />
+
+  <label for="codInput">COD (Cash on Delivery) Amount</label>
+  <input type="number" id="codInput" placeholder="COD amount" min="0" step="0.01" />
+
+  <div class="products-inputs">
+    <h3>Products</h3>
+    <div id="productsContainer">
+      <div class="product-row">
+        <input type="text" placeholder="Product Name" class="product-name" />
+        <input type="text" placeholder="Size" class="size-input" />
+        <input type="number" placeholder="Price per item" class="price-input" min="0" />
+      </div>
+    </div>
+    <button type="button" id="addProductBtn">+ Add Another Product</button>
+  </div>
+
+  <button id="generateBtn">Generate Invoice</button>
+  <button id="downloadBtn" style="display:none; background:#118ab2;">Download as A4 Image</button>
+
+  <div id="invoice" style="display:none;">
+    <header>
+      <h2 id="invBusinessName"></h2>
+    </header>
+    <div class="info-section">
+      <div class="info-box">
+        <h3>Customer Info</h3>
+        <p><strong>Name:</strong> <span id="invCustomerName"></span></p>
+        <p><strong>Address:</strong> <span id="invCustomerAddress"></span></p>
+        <p><strong>Phone:</strong> <span id="invCustomerPhone"></span></p>
+      </div>
+      <div class="info-box" style="text-align:right;">
+        <h3>Invoice Date</h3>
+        <p id="invDate"></p>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Size</th>
+          <th>Price (per item)</th>
+        </tr>
+      </thead>
+      <tbody id="invProductsBody">
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" style="text-align:right;">Total:</td>
+          <td id="invTotalPrice"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="cod-row" id="invCodRow" style="display:none;">
+      COD Amount: <span id="invCodAmount"></span>
+    </div>
+
+    <div class="signature">
+      <img src="https://dtfflex.github.io/appmanager/signature.png" style="width:150px; height:150px; margin-bottom:-25px;" alt="Signature">
+      <p>Tanbir Rohoman</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+  const addProductBtn = document.getElementById('addProductBtn');
+  const productsContainer = document.getElementById('productsContainer');
+  const generateBtn = document.getElementById('generateBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const invoiceDiv = document.getElementById('invoice');
+
+  addProductBtn.addEventListener('click', () => {
+    const productRow = document.createElement('div');
+    productRow.className = 'product-row';
+    productRow.innerHTML = `
+      <input type="text" placeholder="Product Name" class="product-name" />
+      <input type="text" placeholder="Size" class="size-input" />
+      <input type="number" placeholder="Price per item" class="price-input" min="0" />
+    `;
+    productsContainer.appendChild(productRow);
+  });
+
+  generateBtn.addEventListener('click', () => {
+    const businessName = document.getElementById('businessName').value.trim();
+    const customerName = document.getElementById('customerName').value.trim();
+    const customerAddress = document.getElementById('customerAddress').value.trim();
+    const customerPhone = document.getElementById('customerPhone').value.trim();
+    const codValueRaw = document.getElementById('codInput').value;
+    const codValue = codValueRaw ? parseFloat(codValueRaw) : 0;
+
+    if(!businessName || !customerName || !customerAddress || !customerPhone){
+      alert('Please fill in all business and customer info fields.');
+      return;
+    }
+
+    const productNames = Array.from(document.querySelectorAll('.product-name')).map(el => el.value.trim());
+    const productSizes = Array.from(document.querySelectorAll('.size-input')).map(el => el.value.trim());
+    const productPrices = Array.from(document.querySelectorAll('.price-input')).map(el => parseFloat(el.value));
+
+    for(let i = 0; i < productNames.length; i++){
+      if(!productNames[i] || !productSizes[i] || isNaN(productPrices[i]) || productPrices[i] < 0){
+        alert('Please fill all product fields correctly for product #' + (i+1));
+        return;
+      }
+    }
+
+    document.getElementById('invBusinessName').textContent = businessName;
+    document.getElementById('invCustomerName').textContent = customerName;
+    document.getElementById('invCustomerAddress').textContent = customerAddress;
+    document.getElementById('invCustomerPhone').textContent = customerPhone;
+    document.getElementById('invDate').textContent = new Date().toLocaleDateString();
+
+    const tbody = document.getElementById('invProductsBody');
+    tbody.innerHTML = '';
+
+    let totalPrice = 0;
+    for(let i=0; i < productNames.length; i++){
+      const tr = document.createElement('tr');
+
+      const tdName = document.createElement('td');
+      tdName.textContent = productNames[i];
+      const tdSize = document.createElement('td');
+      tdSize.textContent = productSizes[i];
+      const tdPrice = document.createElement('td');
+      tdPrice.textContent = productPrices[i].toFixed(2);
+
+      totalPrice += productPrices[i];
+
+      tr.appendChild(tdName);
+      tr.appendChild(tdSize);
+      tr.appendChild(tdPrice);
+
+      tbody.appendChild(tr);
+    }
+    document.getElementById('invTotalPrice').textContent = totalPrice.toFixed(2);
+
+    // Show COD row if > 0
+    const codRow = document.getElementById('invCodRow');
+    if(codValue > 0){
+      codRow.style.display = 'block';
+      document.getElementById('invCodAmount').textContent = codValue.toFixed(2);
+    } else {
+      codRow.style.display = 'none';
+    }
+
+    invoiceDiv.style.display = 'block';
+    downloadBtn.style.display = 'inline-block';
+    window.scrollTo({top: invoiceDiv.offsetTop, behavior: 'smooth'});
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    // For A4, scale accordingly (width:1240px, height:1754px)
+    // We use scale 2 to get sharper image (2480x3508)
+    html2canvas(invoiceDiv, {
+      scale: 2,
+      width: 1240,
+      height: 1754,
+      windowWidth: 1240,
+      windowHeight: 1754,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'invoice_a4.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  });
+</script>
+
+</body>
+</html>
